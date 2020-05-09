@@ -5,7 +5,6 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
-require 'validate_url/rspec_matcher'
 require 'rails-controller-testing'
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -79,4 +78,5 @@ RSpec.configure do |config|
     config.include ::Rails::Controller::Testing::Integration, :type => type
   end
   config.include Requests::JsonHelpers, type: :request
+  config.mock_with :mocha
 end

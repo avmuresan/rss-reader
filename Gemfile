@@ -21,6 +21,8 @@ gem 'slim'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'rss'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -52,10 +54,10 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem 'shoulda-matchers'
-  gem 'validate_url', git: 'https://github.com/perfectline/validates_url', ref: 'aae8b65e047c89afdaa2617b595eb181dccff6b0'
 
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'mocha'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

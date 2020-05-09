@@ -30,7 +30,7 @@ describe Api::FeedsController, type: :request do
     end
 
     let(:bad_params) { { feed: { title: 'feed', url: 'invalid' } } }
-    let(:expected_invalid_response) { { 'url' => ['is not a valid URL'] } }
+    let(:expected_invalid_response) { { 'url' => ['is invalid'] } }
 
     it 'responds with the create errors json' do
       expect { post api_feeds_url(bad_params) }.to change(Feed, :count).by(0)

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :feeds, except: %i[new edit]
+    resources :articles, only: %i[index]
   end
 
   get '*path', to: 'pages#app', constraints: lambda { |req|
