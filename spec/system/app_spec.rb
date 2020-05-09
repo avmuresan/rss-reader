@@ -16,7 +16,7 @@ RSpec.describe 'App', type: :system do
   describe 'feeds page' do
     it 'shows the right content' do
       visit '/feeds'
-      expect(page).to have_content('Feeds page')
+      expect(page).to have_content('Feeds configuration')
     end
   end
 end
