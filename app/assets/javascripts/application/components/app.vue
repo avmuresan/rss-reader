@@ -1,22 +1,16 @@
-<template>
-  <div id="app">
-    <p>{{ message }}</p>
-  </div>
+<template lang="pug">
+  #app
+    Header
+    router-view
 </template>
 
 <script>
+
+  import Header from './header';
+
   export default {
-    data: function () {
-      return {
-        message: 'Hello Vue!'
-      };
+    components: {
+      Header
     }
   };
 </script>
-
-<style scoped>
-  p {
-    font-size: 2em;
-    text-align: center;
-  }
-</style>

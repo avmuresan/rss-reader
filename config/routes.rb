@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   end
 
   get '*path', to: 'pages#app', constraints: lambda { |req|
-    %(/api).none? { |p| req.path.start_with?(p) }
+    %w(/api).none? { |p| req.path.start_with?(p) }
   }
 end

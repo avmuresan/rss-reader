@@ -17,7 +17,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'redis', '~> 4.0'
 # html made simple
 gem 'slim'
-
+# Use SCSS for stylesheets
+gem 'sass-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
