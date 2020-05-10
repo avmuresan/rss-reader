@@ -30,7 +30,7 @@ describe Api::FeedsController, type: :request do
     end
 
     let(:bad_params) { { feed: { title: 'feed', url: 'invalid' } } }
-    let(:expected_invalid_response) { { 'url' => ['is invalid'] } }
+    let(:expected_invalid_response) { { 'url' => ['Invalid URL.'] } }
 
     it 'responds with the create errors json' do
       expect { post api_feeds_url(bad_params) }.to change(Feed, :count).by(0)
@@ -68,7 +68,7 @@ describe Api::FeedsController, type: :request do
     let(:invalid_params) { { feed: { title: '' } } }
     let(:expected_invalid_response) do
       {
-        'title' => ['is too short (minimum is 3 characters)']
+        'title' => ['Title needs to be between 3 and 50 characters.']
       }
     end
 

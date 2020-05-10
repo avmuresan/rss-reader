@@ -14,4 +14,6 @@ Then
 
 Caching is being made using redis, that needs to be installed locally as well.
 
-Unit tests can be executed using `bundle exec rspec` while the linters for rubocop, stylelint and eslint can be executed using `bin/lint`
+Unit tests and feature tests can be executed using `bundle exec rspec` while the linters for rubocop, stylelint and eslint can be executed using `bin/lint`
+
+The app is also available on [https://rss-feeds-reader.herokuapp.com](https://rss-feeds-reader.herokuapp.com) , try it out.

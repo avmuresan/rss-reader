@@ -14,7 +14,8 @@ require 'webmock/rspec'
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-WebMock.disable_net_connect!(allow_localhost: true)
+WebMock.disable_net_connect!(allow_localhost: true,
+                             allow: 'chromedriver.storage.googleapis.com')
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

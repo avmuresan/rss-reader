@@ -4,11 +4,22 @@ RSpec.describe Feed, type: :model do
   subject { FactoryBot.create(:feed) }
 
   describe '#validations' do
+    let(:err) { 'Title needs to be between 3 and 50 characters.' }
+    let(:er) { 'Feed already exists.' }
+
     it { is_expected.to be_valid }
-    it { should validate_length_of(:title).is_at_least(3) }
-    it { should validate_length_of(:title).is_at_most(50) }
+    it { should validate_length_of(:title).is_at_least(3).with_message(err) }
+    it { should validate_length_of(:title).is_at_most(50).with_message(err) }
+    it { should validate_uniqueness_of(:url).case_insensitive.with_message(er) }
     it { should allow_value('http://www.google.ro').for(:url) }
     it { should_not allow_value('foo').for(:url) }
+
+    it 'strips the url before saving' do
+      url = '   http://aBc.cOm   '
+      subject = FactoryBot.build(:feed, url: url)
+      subject.save
+      expect(subject.reload.url).to eq(url.strip)
+    end
   end
 
   describe '#articles' do
