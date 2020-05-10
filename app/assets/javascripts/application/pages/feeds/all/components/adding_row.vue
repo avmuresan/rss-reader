@@ -34,6 +34,7 @@
         this.loading = true;
         this.$store.dispatch('feeds/save', { feed: this.form.data })
           .then(() => {
+            this.$store.dispatch('articles/load');
             this.loading = false;
             this.setFormData();
           }).catch((error) => {

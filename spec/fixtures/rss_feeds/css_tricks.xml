@@ -1,0 +1,1583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?><rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" version="2.0">
+
+<channel>
+	<title>CSS-Tricks</title>
+	
+	<link>https://css-tricks.com</link>
+	<description>Tips, Tricks, and Techniques on using Cascading Style Sheets.</description>
+	<lastBuildDate>Fri, 08 May 2020 23:22:41 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.4.1</generator>
+<site xmlns="com-wordpress:feed-additions:1">45537868</site>	<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/CssTricks" /><feedburner:info xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" uri="csstricks" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><item>
+		<title>Chromium lands Flexbox gap</title>
+		<link>https://web.dev/flexbox-gap/</link>
+		
+		<dc:creator><![CDATA[Chris Coyier]]></dc:creator>
+		<pubDate>Fri, 08 May 2020 23:22:40 +0000</pubDate>
+				<category><![CDATA[Link]]></category>
+		<category><![CDATA[flexbox]]></category>
+		<category><![CDATA[gap]]></category>
+		<category><![CDATA[grid]]></category>
+		<guid isPermaLink="false">https://css-tricks.com/?p=310085</guid>
+
+					<description><![CDATA[<p>I mentioned <a href="https://css-tricks.com/exciting-things-on-the-horizon-for-css-layout/">this</a> the other day via Michelle Barker&#8217;s coverage, but here I&#8217;ll <a href="https://web.dev/flexbox-gap/">link to</a> the official announcement. The main thing is that we&#8217;ll be getting <code>gap</code> with <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">flexbox</a>, which means:</p>
+<pre rel="CSS" class="wp-block-csstricks-code-block language-css" data-line=""><code markup="tt">.flex-parent {
+  display: flex;
+  gap: 1rem;
+}
+.flex-child {
+  flex: 1;
+}</code></pre>
+<p>That&#8217;s excellent, as putting space in between flex items has been tough in the past. We have <code>justify-content: space-between</code>, which is nice sometimes, but that doesn&#8217;t allow you to explicitly tell the flex container <em>how </em>&#8230; <a href="https://css-tricks.com/chromium-lands-flexbox-gap/" class="read-more">Read article <span class="screen-reader-text"> &#8220;Chromium lands Flexbox gap&#8221;</span></a></p>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/chromium-lands-flexbox-gap/">Chromium lands Flexbox gap</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>I mentioned <a href="https://css-tricks.com/exciting-things-on-the-horizon-for-css-layout/">this</a> the other day via Michelle Barker&#8217;s coverage, but here I&#8217;ll <a href="https://web.dev/flexbox-gap/">link to</a> the official announcement. The main thing is that we&#8217;ll be getting <code>gap</code> with <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">flexbox</a>, which means:</p>
+
+
+
+<pre rel="CSS" class="wp-block-csstricks-code-block language-css" data-line=""><code markup="tt">.flex-parent {
+  display: flex;
+  gap: 1rem;
+}
+.flex-child {
+  flex: 1;
+}</code></pre>
+
+
+
+<p>That&#8217;s excellent, as putting space in between flex items has been tough in the past. We have <code>justify-content: space-between</code>, which is nice sometimes, but that doesn&#8217;t allow you to explicitly tell the flex container <em>how much</em> space you want. For that, we&#8217;d typically use <code>margin</code>, but that means <em>avoiding</em> setting the margin on the first or last element depending on the direction of the margin — which is annoying gets complicated. </p>
+
+
+
+<p>We have <code>gap</code> in CSS Grid and it&#8217;s way better. It&#8217;s great to have it in flexbox.</p>
+
+
+
+<p>But it&#8217;s going to get weird for a minute. Safari doesn&#8217;t support it yet (nor stable Chrome) so we can&#8217;t just plop it out there and expect it to work with flexbox. But shouldn&#8217;t we be able to do an <code>@supports</code> query these days?</p>
+
+
+
+<pre rel="CSS" class="wp-block-csstricks-code-block language-css" data-line=""><code markup="tt">/* Nope, sorry. This "works" but it doesn't 
+   actually tell you if it works in *flexbox* or not.
+   This works in grid in most browsers now, so it will pass. */
+@supports (gap: 1rem) {
+  .flex-parent {
+     gap: 1rem;
+  }
+}</code></pre>
+
+
+
+<p>That got weird because <code>grid-gap</code> was dropped in favor of just <code>gap</code>. I&#8217;m sure <code>grid-gap</code> will be supported forever because that&#8217;s generally how these things go, but we&#8217;re encouraged to use <code>gap</code> instead. So, you might say gap is a little overloaded, but that should shake out over time (<em>a year?</em>). It&#8217;s complicated a smidge more by the fact that <code>column-gap</code> is now going to <code>gap</code> as well. <code>gap</code> has a whole bunch of jobs. </p>
+
+
+
+<p>I&#8217;d say I&#8217;m still in favor of the change, despite the overloading. Simpler mental modals are important for the long-term, and there isn&#8217;t exactly anything coming up to challenge CSS for styling in the browser. I&#8217;d bet my 2-year old daughter writes some CSS in her lifetime.</p>
+<p><a href="https://web.dev/flexbox-gap/" title="Direct link to featured article">Direct Link to Article</a> &#8212; <a href="https://css-tricks.com/chromium-lands-flexbox-gap/">Permalink</a></p><p>The post <a rel="nofollow" href="https://css-tricks.com/chromium-lands-flexbox-gap/">Chromium lands Flexbox gap</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">310085</post-id>	</item>
+		<item>
+		<title>prerender.js</title>
+		<link>https://github.com/genderev/prerender.js</link>
+					<comments>https://css-tricks.com/prerender-js/#respond</comments>
+		
+		<dc:creator><![CDATA[Chris Coyier]]></dc:creator>
+		<pubDate>Fri, 08 May 2020 23:22:32 +0000</pubDate>
+				<category><![CDATA[Article]]></category>
+		<category><![CDATA[performance]]></category>
+		<category><![CDATA[prefetch]]></category>
+		<guid isPermaLink="false">https://css-tricks.com/?p=308411</guid>
+
+					<description><![CDATA[<p><a href="https://github.com/genderev/prerender.js">This</a> is another player in the game of rendering the page of the link that you&#8217;re <em>about</em> to click on before you click it. It&#8217;s like getting a decent performance boost for extremely little effort. </p>
+<p><a href="https://css-tricks.com/instant-page/">Instant.page</a> is another one, and I&#8217;ve been sufficiently convinced by its methodology to the extent that I run it here on this site right now. I don&#8217;t really know the difference between the two. And they aren&#8217;t the only players either. Google has <a href="https://github.com/GoogleChromeLabs/quicklink">quicklink</a> and &#8230; <a href="https://css-tricks.com/prerender-js/" class="read-more">Read article <span class="screen-reader-text"> &#8220;prerender.js&#8221;</span></a></p>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/prerender-js/">prerender.js</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p><a href="https://github.com/genderev/prerender.js">This</a> is another player in the game of rendering the page of the link that you&#8217;re <em>about</em> to click on before you click it. It&#8217;s like getting a decent performance boost for extremely little effort. </p>
+
+
+
+<p><a href="https://css-tricks.com/instant-page/">Instant.page</a> is another one, and I&#8217;ve been sufficiently convinced by its methodology to the extent that I run it here on this site right now. I don&#8217;t really know the difference between the two. And they aren&#8217;t the only players either. Google has <a href="https://github.com/GoogleChromeLabs/quicklink">quicklink</a> and there&#8217;s <a href="https://github.com/guess-js/guess">guess-js</a> for really exotic preloading. </p>
+
+
+
+<p>It&#8217;s a bit of a pity that Safari and Firefox <a href="https://caniuse.com/#feat=link-rel-prerender">don&#8217;t support <code>&lt;link rel="prerender"&gt;</code></a>, as it really seems to me the absolute easiest way to pull this off would be to drop that on the page where, on <code>mouseover</code> of a link, it points to the <code>href</code> of that link.</p>
+<p><a href="https://github.com/genderev/prerender.js" title="Direct link to featured article">Direct Link to Article</a> &#8212; <a href="https://css-tricks.com/prerender-js/">Permalink</a></p><p>The post <a rel="nofollow" href="https://css-tricks.com/prerender-js/">prerender.js</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://css-tricks.com/prerender-js/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">308411</post-id>	</item>
+		<item>
+		<title>Let’s Take a Deep Dive Into the CSS Contain Property</title>
+		<link>https://css-tricks.com/lets-take-a-deep-dive-into-the-css-contain-property/</link>
+					<comments>https://css-tricks.com/lets-take-a-deep-dive-into-the-css-contain-property/#comments</comments>
+		
+		<dc:creator><![CDATA[Travis Almand]]></dc:creator>
+		<pubDate>Fri, 08 May 2020 14:33:21 +0000</pubDate>
+				<category><![CDATA[Article]]></category>
+		<guid isPermaLink="false">https://css-tricks.com/?p=307895</guid>
+
+					<description><![CDATA[<p>Compared to the past, modern browsers have become really efficient at rendering the tangled web of HTML, CSS, and JavaScript code a typical webpage provides. It takes a mere <em>milliseconds</em> to render the code we give it into something people can use.</p>
+<p>What could we, as front-end developers, do to actually help the browser be even faster at rendering? There are the usual best practices that are so easy to forget with our modern tooling — especially in cases where &#8230; <a href="https://css-tricks.com/lets-take-a-deep-dive-into-the-css-contain-property/" class="read-more">Read article <span class="screen-reader-text"> &#8220;Let&#8217;s Take a Deep Dive Into the CSS Contain Property&#8221;</span></a></p>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/lets-take-a-deep-dive-into-the-css-contain-property/">Let&#8217;s Take a Deep Dive Into the CSS Contain Property</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>Compared to the past, modern browsers have become really efficient at rendering the tangled web of HTML, CSS, and JavaScript code a typical webpage provides. It takes a mere <em>milliseconds</em> to render the code we give it into something people can use.</p>
+
+
+
+<p>What could we, as front-end developers, do to actually help the browser be even faster at rendering? There are the usual best practices that are so easy to forget with our modern tooling — especially in cases where we may not have as much control over generated code. We could keep our CSS under control, for instance, with fewer and simpler selectors. We could keep our HTML under control; keep the tree flatter with fewer nodes, and especially fewer children. We could keep our JavaScript under control; while being careful with our HTML and CSS manipulations.</p>
+
+
+
+<p>Actually, modern frameworks such as Vue and React do help out a good bit with that last part.</p>
+
+
+
+<p>I would like to explore a CSS property that we could use to help the browser figure out what calculations it can reduce in priority or maybe even skip altogether.</p>
+
+
+
+<span id="more-307895"></span>
+
+
+
+<p>This property is called <code>contain</code>. Here is how <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/contain">MDN </a>defines this property:</p>
+
+
+
+<blockquote class="wp-block-quote"><p>The <strong><code>contain</code></strong> CSS property allows an author to indicate that an element and its contents are, as much as possible, independent of the rest of the document tree. This allows the browser to recalculate layout, style, paint, size, or any combination of them for a limited area of the DOM and not the entire page, leading to obvious performance benefits.</p></blockquote>
+
+
+
+<p>A simple way to look at what this property provides is that we can give hints to the browser about the relationships of the various elements on the page. Not necessarily smaller elements, such as paragraphs or links, but larger groups such as sections or articles. Essentially, we’re talking about container elements that hold content — even content that can be dynamic in nature. Think of a typical SPA where dynamic content is being inserted and removed throughout the page, often independent of other content on the page.</p>
+
+
+
+<p>A browser cannot predict the future of layout changes to the webpage that can happen from JavaScript inserting and removing content on the page. Even simple things as inserting a class name to an element, animating a DOM element, or just getting the dimensions of an element can cause a reflow and repaint of the page. Such things can be expensive and should be avoided, or at least be reduced as much as possible.</p>
+
+
+
+<p>Developers can sort of predict the future because they’ll know about possible future changes based on the UX of the page design, such as when the user clicks on a button it will call for data to be inserted in a div located somewhere in the current view. We know that’s a possibility, but the browser does not. We also know that there’s a distinct possibility that inserting data in that div will not change anything visually, or otherwise, for other elements on the page.</p>
+
+
+
+<p>Browser developers have spent a good amount of time optimizing the browser to handle such situations. There are various ways of helping the browser be more efficient in such situations, but more direct hints would be helpful. The contain property gives us a way to provide these hints.</p>
+
+
+
+<h3>The various ways to contain</h3>
+
+
+
+<p>The <strong><code>contain</code></strong> property has three values that can be used individually or in combination with one another: <code>size</code>, <code>layout</code>, and <code>paint</code>. It also has two shorthand values for common combinations: <code>strict</code> and <code>content</code>. Let’s cover the basics of each.</p>
+
+
+
+<p>Please keep in mind that there are a number of rules and edge cases for each of these that are <a href="https://drafts.csswg.org/css-contain/">covered in the spec</a>. I would imagine these will not be of much concern in most situations. Yet, if you get an undesired result, then a quick look at the spec might be handy.</p>
+
+
+
+<p>There is also a <code>style</code> containment type in the spec that this article will not cover. The reason being that the <code>style</code> containment type is considered of little value at this time and is currently at-risk of being removed from the spec.</p>
+
+
+
+<h4>Size containment</h4>
+
+
+
+<p><code>size</code> containment is actually a simple one to explain. When a container with this containment is involved in the layout calculations, the browser can skip quite a bit because it ignores the children of that container. It is expected the container will have a set height and width; otherwise, it collapses, and that is the only thing considered in layout of the page. It is treated as if it has no content whatsoever.</p>
+
+
+
+<p>Consider that descendants can affect their container in terms of size, depending on the styles of the container. This has to be considered when calculating layout; with <code>size</code> containment, it most likely will not be considered. Once the container’s size has been resolved in relation to the page, then the layout of its descendants will be calculated.</p>
+
+
+
+<p><code>size</code> containment doesn’t really provide much in the way of optimizations. It is usually combined with one of the other values.</p>
+
+
+
+<p>Although, one benefit it could provide is helping with JavaScript that alters the descendants of the container based on the size of the container, such as a container query type situation. In some circumstances, altering descendants based on the container’s size can cause the container to change size after the change was done to the descendants. Since a change in the container’s size can trigger another change in the descendants you could end up with a loop of changes. <code>size</code> containment can help prevent that loop.</p>
+
+
+
+<p>Here’s a totally contrived example of this resizing loop concept:</p>
+
+
+
+<div class="wp-block-cp-codepen-gutenberg-embed-block cp_embed_wrapper"><iframe id="cp_embed_602a03a8fce1d50edffd594013533bda" src="//codepen.io/anon/embed/602a03a8fce1d50edffd594013533bda?height=450&amp;theme-id=1&amp;slug-hash=602a03a8fce1d50edffd594013533bda&amp;default-tab=result" height="450" scrolling="no" frameborder="0" allowfullscreen allowpaymentrequest name="CodePen Embed 602a03a8fce1d50edffd594013533bda" title="CodePen Embed 602a03a8fce1d50edffd594013533bda" class="cp_embed_iframe" style="width:100%;overflow:hidden">CodePen Embed Fallback</iframe></div>
+
+
+
+<p>In this example, clicking the start button will cause the red box to start growing, based on the size of the purple parent box, plus five pixels. As the purple box adjusts in size, a resize observer tells the red square to again resize based on the size of the parent. This causes the parent to resize again and so on. The code stops this process once the parent gets above 300 pixels to prevent the infinite loop.</p>
+
+
+
+<p>The reset button, of course, puts everything back into place.</p>
+
+
+
+<p>Clicking the checkbox “set size containment” sets different dimensions and the <code>size</code> containment on the purple box. Now when you click on the start button, the red box will resize itself based on the width of the purple box. True, it overflows the parent, but the point is that it only resizes the one time and stops; there’s no longer a loop.</p>
+
+
+
+<p>If you click on the resize container button, the purple box will grow wider. After the delay, the red box will resize itself accordingly. Clicking the button again returns the purple box back to its original size and then the red box will resize again.</p>
+
+
+
+<p>While it is possible to accomplish this behavior without use of the containment, you will miss out on the benefits. If this is a situation that can happen often in the page the containment helps out with page layout calculations. When the descendants change internal to the containment, the rest of the page behaves as if the changes never happened.</p>
+
+
+
+<h4>Layout containment</h4>
+
+
+
+<p><code>layout</code> containment tells the browser that external elements neither affect the internal layout of the container element, nor does the internal layout of the container element affect external elements. So when the browser does layout calculations, it can assume that the various elements that have the layout containment won’t affect other elements. This can lower the amount of calculations that need to be done.</p>
+
+
+
+<p>Another benefit is that related calculations could be delayed or lowered in priority if the container is off-screen or obscured. An example the spec provides is:</p>
+
+
+
+<blockquote class="wp-block-quote"><p>[…] for example, if the containing box is near the end of a block container, and you’re viewing the beginning of the block container</p></blockquote>
+
+
+
+<p>The container with <code>layout</code> containment becomes a containing box for <code>absolute</code> or <code>fixed</code> position descendants. This would be the same as applying a <code>relative</code> position to the container. So, keep that in mind how the container’s descendants may be affected when applying this type of containment.</p>
+
+
+
+<p>On a similar note, the container gets a new stacking context, so <code>z-index</code> can be used the same as if a <code>relative</code>, <code>absolute</code>, or <code>fixed</code> position was applied. Although, setting the <code>top</code>, <code>right</code>, <code>bottom</code>, or <code>left</code> properties has no effect on the container.</p>
+
+
+
+<p>Here’s a simple example of this:</p>
+
+
+
+<div class="wp-block-cp-codepen-gutenberg-embed-block cp_embed_wrapper"><iframe id="cp_embed_d74abaee5fda719f6c33ff0c6853b6a3" src="//codepen.io/anon/embed/d74abaee5fda719f6c33ff0c6853b6a3?height=450&amp;theme-id=1&amp;slug-hash=d74abaee5fda719f6c33ff0c6853b6a3&amp;default-tab=result" height="450" scrolling="no" frameborder="0" allowfullscreen allowpaymentrequest name="CodePen Embed d74abaee5fda719f6c33ff0c6853b6a3" title="CodePen Embed d74abaee5fda719f6c33ff0c6853b6a3" class="cp_embed_iframe" style="width:100%;overflow:hidden">CodePen Embed Fallback</iframe></div>
+
+
+
+<p>Click the box and <code>layout</code> containment is toggled. When <code>layout</code> containment is applied, the two purple lines, which are absolute positioned, will shift to inside the purple box. This is because the purple box becomes a containing block with the containment. Another thing to note is that the container is now stacked on top of the green lines. This is because the container now has a new stacking context and follows those rules accordingly.</p>
+
+
+
+<h4>Paint containment</h4>
+
+
+
+<p><code>paint</code> containment tells the browser none of the children of the container will ever be painted outside the boundaries of the container’s box dimensions. This is similar to placing <code>overflow: hidden;</code> on the container, but with a few differences.</p>
+
+
+
+<p>For one, the container gets the same treatment as it does under <code>layout</code> containment: it becomes a containing block with its own stacking context. So, having positioned children inside <code>paint</code> containment will respect the container in terms of placement. If we were to duplicate the <code>layout</code> containment demo above but use <code>paint</code> containment instead, the outcome would be much the same. The difference being that the purple lines would not overflow the container when containment is applied, but would be clipped at the container’s <code>border-box</code>.</p>
+
+
+
+<p>Another interesting benefit of <code>paint</code> containment is that the browser can skip that element’s descendants in paint calculations if it can detect that the container itself is not visible within the viewport. If the container is not in the viewport or obscured in some way, then it’s a guarantee that its descendants are not visible as well. As an example, think of a nav menu that normally sits off-screen to the left of the page and it slides in when a button is clicked. When that menu is in its normal state off-screen, the browser just skips trying to paint its contents.</p>
+
+
+
+<h3>Containments working together</h3>
+
+
+
+<p>These three containments provide different ways of influencing parts of rendering calculations performed by the browser. <code>size</code> containment tells the browser that this container should not cause positional shifting on the page when its contents change. <code>layout</code> containment tells the browser that this container’s descendants should not cause layout changes in elements outside of its container and vice-versa. <code>paint</code> containment tells the browser that this container’s content will never be painted outside of the container’s dimensions and, if the container is obscured, then don’t bother painting the contents at all.</p>
+
+
+
+<p>Since each of these provide different optimizations, it would make sense to combine some of them. The spec actually allows for that. For example, we could use <code>layout</code> and <code>paint</code> together as values of the contain property like this:</p>
+
+
+
+<pre rel="CSS" class="wp-block-csstricks-code-block language-css" data-line=""><code markup="tt">.el {
+  contain: layout paint;
+}</code></pre>
+
+
+
+<p>Since this is such an obvious thing to do, the spec actually provides two shorthand values:</p>
+
+
+
+<figure class="wp-block-table"><table><thead><tr><th><strong>Shorthand</strong></th><th><strong>Longhand</strong></th></tr></thead><tbody><tr><td><code>content</code></td><td><code>layout paint</code></td></tr><tr><td><code>strict</code></td><td><code>layout paint size</code></td></tr></tbody></table></figure>
+
+
+
+<p>The <code>content</code> value will be the most common to use in a web project with a number of dynamic elements, such as large multiple containers that have content changing over time or from user activity.</p>
+
+
+
+<p>The <code>strict</code> value would be useful for containers that have a defined size that will never change, even if the content changes. Once in place, it’ll stay the intended size. A simple example of that is a div that contains third-party external advertising content, at industry-defined dimensions, that has no relation to anything else on the page DOM-wise.</p>
+
+
+
+<h3>Performance benefits</h3>
+
+
+
+<p>This part of the article is tough to explain. The problem is that there isn’t much in the way of <em>visual</em>s about the performance benefits. Most of the benefits are behind-the-scenes optimizations that help the browser decide what to do on a layout or paint change.</p>
+
+
+
+<p>As an attempt to show the <code>contain</code>&nbsp;property’s performance benefits, I made a simple example that changes the <code>font-size</code> on an element with several children. This sort of change would normally trigger a re-layout, which would also lead to a repaint of the page. The example covers the contain values of <code>none</code>, <code>content</code>, and <code>strict</code>.</p>
+
+
+
+<div class="wp-block-cp-codepen-gutenberg-embed-block cp_embed_wrapper"><iframe id="cp_embed_136d6b5d501fb5160d03a4fae91f9ff5" src="//codepen.io/anon/embed/136d6b5d501fb5160d03a4fae91f9ff5?height=650&amp;theme-id=1&amp;slug-hash=136d6b5d501fb5160d03a4fae91f9ff5&amp;default-tab=result" height="650" scrolling="no" frameborder="0" allowfullscreen allowpaymentrequest name="CodePen Embed 136d6b5d501fb5160d03a4fae91f9ff5" title="CodePen Embed 136d6b5d501fb5160d03a4fae91f9ff5" class="cp_embed_iframe" style="width:100%;overflow:hidden">CodePen Embed Fallback</iframe></div>
+
+
+
+<p>The radio buttons change the value of the contain <code>property</code> being applied to the purple box in the center. The “change font-size” button will toggle the <code>font-size</code> of the contents of the purple box by switching classes. Unfortunately, this class change is also a potential trigger for re-layout. If you’re curious, <a href="https://gist.github.com/paulirish/5d52fb081b3570c81e3a">here is a list of situations in JavaScript</a> and then a similar <a href="https://csstriggers.com/">list for CSS</a> that trigger such layout and paint calculations. I bet there’s more than you think.</p>
+
+
+
+<p>My totally unscientific process was to select the contain type, start a performance recording in Chome’s developer tools, click the button, wait for the <code>font-size</code> change, then stop the recording after another second or so. I did this three times for each containment type to be able to compare multiple recordings. The numbers for this type of comparison are in the low milliseconds each, but there’s enough of a difference to get a feel for the benefits. The numbers could potentially be quite different in a more real-world situation.</p>
+
+
+
+<p>But there are a few things to note other than just the raw numbers.</p>
+
+
+
+<p>When looking through the recording, I would find the relevant area in the timeline and focus there to select the task that covers the change. Then I would look at the event log of the task to see the details. The logged events were: recalculate style, layout, update layer tree, paint, and composite layers. Adding the times of all those gives us the total time of the task.</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/LJk5B0u_.png?ssl=1" alt="DevTools showing set time at 27.9 milliseconds which is the same as the total time to recalculate styles." class="wp-image-307896" srcset="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/LJk5B0u_.png?w=861&amp;ssl=1 861w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/LJk5B0u_.png?resize=300%2C76&amp;ssl=1 300w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/LJk5B0u_.png?resize=768%2C194&amp;ssl=1 768w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>The event log with no containment.</figcaption></figure>
+
+
+
+<p>One thing to note for the two containment types&nbsp;is that&nbsp;the paint event was logged twice. I’ll get back to that in a moment.</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/1B1wj2zw.png?ssl=1" alt="DevTools showing set time at 13.8 milliseconds which is the same as the total time to recalculate styles." class="wp-image-307897" srcset="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/1B1wj2zw.png?w=851&amp;ssl=1 851w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/1B1wj2zw.png?resize=300%2C79&amp;ssl=1 300w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/1B1wj2zw.png?resize=768%2C202&amp;ssl=1 768w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /></figure>
+
+
+
+<h4>Completing the task at hand</h4>
+
+
+
+<p>Here are the total times for the three containment types, three runs each:</p>
+
+
+
+<figure class="wp-block-table"><table><thead><tr><th>Containment</th><th>Run 1</th><th>Run 2</th><th>Run 3</th><th>Average</th></tr></thead><tbody><tr><td><code>none</code></td><td>24 ms</td><td>33.8 ms</td><td>23.3 ms</td><td>27.03 ms</td></tr><tr><td><code>content</code></td><td>13.2 ms</td><td>9 ms</td><td>9.2 ms</td><td>10.47 ms</td></tr><tr><td><code>strict</code></td><td>5.6 ms</td><td>18.9 ms</td><td>8.5 ms</td><td>11 ms</td></tr></tbody></table></figure>
+
+
+
+<p>The majority of the time was spent in layout. There were spikes here and there throughout the numbers, but remember that these are unscientific anecdotal results. In fact, the second run of <code>strict</code> containment had a much higher result than the other two runs; I just kept it in because such things do happen in the real world. Perhaps the music I was listening to at the time changed songs during that run, who knows. But you can see that the other two runs were much quicker.</p>
+
+
+
+<p>So, by these numbers you can start to see that the <code>contain</code> property helps the browser render more efficiently. Now imagine my one small change being multiplied over the many changes made to the DOM and styling of a typical dynamic web page.</p>
+
+
+
+<p>Where things get more interesting is in the details of the paint event.</p>
+
+
+
+<h3>Layout once, paint twice</h3>
+
+
+
+<p>Stick with me here. I promise it will make sense.</p>
+
+
+
+<p>I’m going to use the demo above as the basis for the following descriptions. If you wish to follow along then go to the full version of the demo and open the DevTools. Note that you have to open up the details of the “frame” and not the “main” timeline once you run the performance tool to see what I’m about to describe.</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/YVD86YN6.png?ssl=1" alt="Showing frame details open and main details closed in DevTools." class="wp-image-307898" srcset="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/YVD86YN6.png?w=863&amp;ssl=1 863w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/YVD86YN6.png?resize=300%2C42&amp;ssl=1 300w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/YVD86YN6.png?resize=768%2C108&amp;ssl=1 768w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>Showing frame details open and main details closed in DevTools</figcaption></figure>
+
+
+
+<p>I’m actually taking screenshots from the “fullpage” version since DevTools works better with that version. That said, the regular “full” version should give roughly the same idea.</p>
+
+
+
+<p>The paint event only fired once in the event log for the task that had no containment at all. Typically, the event didn’t take too long, ranging from 0.2 ms to 3.6 ms. The deeper details is where it gets interesting. In those details, it notes that the area of paint was the entire page. In the event log, if you hover on the paint event, DevTools will even highlight the area of the page that was painted. The dimensions in this case will be whatever the size of your browser viewport happens to be. It will also note the layer root of the paint.</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/Z_tsmdgB.png?ssl=1" alt="Showing DevTools paint calculation of 0.7 milliseconds." class="wp-image-307899" srcset="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/Z_tsmdgB.png?w=848&amp;ssl=1 848w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/Z_tsmdgB.png?resize=300%2C94&amp;ssl=1 300w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/Z_tsmdgB.png?resize=768%2C240&amp;ssl=1 768w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>Paint event details</figcaption></figure>
+
+
+
+<p>Note that the page area to the left in the image is highlighted, even outside of the purple box. Over to the right, are the dimensions of the paint to the screen. That’s roughly the size of the viewport in this instance. For a future comparison, note the <code>#document</code> as the layer root.</p>
+
+
+
+<p>Keep in mind that browsers have the concept of layers for certain elements to help with painting. Layers are usually for elements that may overlap each other due to a new stacking context. An example of this is the way applying <code>position: relative;</code>&nbsp;and <code>z-index: 1;</code> to an element will cause the browser to create that element as a new layer. The contain property has the same effect.</p>
+
+
+
+<p>There is a section in DevTools called “rendering” and it provides various tools to see how the browser renders the page. When selecting the checkbox named “Layer borders” we can see different things based on the containment. When the containment is none then you should see no layers beyond the typical static web page layers. Select <code>content</code> or <code>strict</code> and you can see the purple box get converted to its own layer and the rest of the layers for the page shift accordingly.</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/g94bwz3e.png?fit=1024%2C251&amp;ssl=1" alt="" class="wp-image-307900" srcset="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/g94bwz3e.png?w=1137&amp;ssl=1 1137w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/g94bwz3e.png?resize=300%2C74&amp;ssl=1 300w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/g94bwz3e.png?resize=1024%2C251&amp;ssl=1 1024w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/g94bwz3e.png?resize=768%2C188&amp;ssl=1 768w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/g94bwz3e.png?resize=1000%2C245&amp;ssl=1 1000w" sizes="(min-width: 735px) 864px, 96vw" /><figcaption>Layers with no containment</figcaption></figure>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/RB59Nb9z.png?ssl=1" alt="" class="wp-image-307901" srcset="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/RB59Nb9z.png?w=1006&amp;ssl=1 1006w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/RB59Nb9z.png?resize=300%2C82&amp;ssl=1 300w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/RB59Nb9z.png?resize=768%2C211&amp;ssl=1 768w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/RB59Nb9z.png?resize=1000%2C274&amp;ssl=1 1000w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>Layers with containment</figcaption></figure>
+
+
+
+<p>It may be hard to notice in the image, but after selecting <code>content</code> containment the purple box becomes its own layer and the page has a shift in layers behind the box. Also notice that in the top image the layer line goes across on top of the box, while in the second image the layer line is below the box.</p>
+
+
+
+<p>I mentioned before that both <code>content</code> and <code>strict</code> causes the paint to fire twice. This is because two painting processes are done for two different reasons. In my demo the first event is for the purple box and the second is for the contents of the purple box.</p>
+
+
+
+<p>Typically the first event will paint the purple box and report the dimensions of that box as part of the event. The box is now its own layer and enjoys the benefits that applies.</p>
+
+
+
+<p>The second event is for the contents of the box since they are scrolling elements. As the spec explains; since the stacking context is guaranteed, scrolling elements can be painted into a single GPU layer. The dimensions reported in the second event is taller, the height of the scrolling elements. Possibly even narrower to make room for the scrollbar.</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/q81vFXnE.png?ssl=1" alt="" class="wp-image-307902" srcset="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/q81vFXnE.png?w=788&amp;ssl=1 788w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/q81vFXnE.png?resize=300%2C82&amp;ssl=1 300w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/q81vFXnE.png?resize=768%2C211&amp;ssl=1 768w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>First paint event with content containment</figcaption></figure>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/ekThiGIW.png?ssl=1" alt="" class="wp-image-307903" srcset="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/ekThiGIW.png?w=772&amp;ssl=1 772w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/ekThiGIW.png?resize=300%2C80&amp;ssl=1 300w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/ekThiGIW.png?resize=768%2C206&amp;ssl=1 768w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>Second paint event with content containment</figcaption></figure>
+
+
+
+<p>Note the difference in dimensions on the right of both of those images. Also, the layer root for both of those events is <code>main.change</code> instead of the <code>#document</code> seen above. The purple box is a <code>main</code> element, so only that element was painted as opposed as to whole document. You can see the box being highlighted as opposed to the whole page.</p>
+
+
+
+<p>The benefits of this is that normally when scrolling elements come into view, they have to be painted. Scrolling elements in containment have already been painted and don’t require it again when coming into view. So we get some scrolling optimizations as well.</p>
+
+
+
+<p>Again, this can be seen in the demo.</p>
+
+
+
+<p>Back to that Rendering tab. This time, check “Scrolling performance issue” instead. When the containment is set to <code>none</code>, Chrome covers the purple box with an overlay that’s labeled “repaints on scroll.”</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/Bd3c36Rg.png?ssl=1" alt="" class="wp-image-307905" srcset="https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/Bd3c36Rg.png?w=699&amp;ssl=1 699w, https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/Bd3c36Rg.png?resize=300%2C90&amp;ssl=1 300w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>DevTools showing “repaints on scroll” with no containment</figcaption></figure>
+
+
+
+<p>If you wish to see this happen live, check the “Paint flashing” option.</p>
+
+
+
+<p class="explanation"><strong>Please note:</strong> if flashing colors on the screen may present an issue for you in some way, please consider not checking the “Paint flashing” option. In the example I just described, not much changes on the page, but if one were to leave that checked and visited other sites, then reactions may be different.</p>
+
+
+
+<p>With paint flashing enabled, you should see a paint indicator covering all the text within the purple box whenever you scroll inside it. Now change the containment to <code>content</code> or <code>strict</code> and then scroll again. After the first initial paint flash it should never reappear, but the scrollbar does show indications of painting while scrolling.</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/X4a5ktnD.png?ssl=1" alt="" class="wp-image-307904" srcset="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/X4a5ktnD.png?w=551&amp;ssl=1 551w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/X4a5ktnD.png?resize=300%2C134&amp;ssl=1 300w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>Paint flashing enabled and scrolling with no containment</figcaption></figure>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/keRJHtuN.png?ssl=1" alt="" class="wp-image-307906" srcset="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/keRJHtuN.png?w=614&amp;ssl=1 614w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/keRJHtuN.png?resize=300%2C147&amp;ssl=1 300w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>Paint flashing and scrolling with content containment</figcaption></figure>
+
+
+
+<p>Also notice that the “repaints on scroll” overlay is gone on both forms of containment. In this case, containment has given us not only some performance boost in painting but in scrolling as well.</p>
+
+
+
+<h3>An interesting accidental discovery</h3>
+
+
+
+<p>As I was experimenting with the demo above and finding out how the paint and scrolling performance aspects worked, I came across an interesting issue. In one test, I had a simple box in the center of page, but with minimal styling. It was essentially an element that scrolls with lots of text content. I was applying <code>content</code> containment to the container element, but I wasn’t seeing the scrolling performance benefits described above.</p>
+
+
+
+<p>The container was flagged with the “repaints on scroll” overlay and the paint flashing was the same as no containment applied, even though I knew for a fact that <code>content</code> containment was being applied to the container. So I started comparing my simple test against the more styled version I discussed above.</p>
+
+
+
+<p>I eventually saw that if the <code>background-color</code> of the container is transparent, then the containment scroll performance benefits do not happen.</p>
+
+
+
+<p>I ran a similar performance test where I would change the <code>font-size</code> of the contents to trigger the re-layout and repaint. Both tests had roughly the same results, with only difference that the first test had a transparent <code>background-color </code>and the second test had a proper background-color. By the numbers, it looks like the behind-the-scenes calculations are still more performant; only the paint events are different. It appears the element doesn’t become its own layer in the paint calculations with a transparent <code>background-color</code>.</p>
+
+
+
+<p>The first test run only had one paint event in the event log. The second test run had the two paint events as I would expect. Without that background color, it seems the browser decides to skip the layer aspect of the containment. I even found that faking transparency by using the same color as the color behind the element works as well. My guess is if the container’s background is transparent then it must rely on whatever is underneath, making it impossible to separate the container to its own paint layer.</p>
+
+
+
+<p>I made another version of the test demo that changes the <code>background-colo</code>r of the container element from transparent to the same color used for the background color of the body. Here are two screenshots showing the differences when using the various options in the Rendering panel in DevTools.</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/eBuAIBMG.png?ssl=1" alt="" class="wp-image-307907" srcset="https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/eBuAIBMG.png?w=702&amp;ssl=1 702w, https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/eBuAIBMG.png?resize=300%2C119&amp;ssl=1 300w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>Rendering panel with transparent <code>background-color</code></figcaption></figure>
+
+
+
+<p>You can see the checkboxes that have been selected and the result to the container. Even with a content containment applied, the box has “repaints on scroll” as well as the green overlay showing painting while scrolling.</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/4VlQ7iDe.png?ssl=1" alt="" class="wp-image-307908" srcset="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/4VlQ7iDe.png?w=706&amp;ssl=1 706w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/4VlQ7iDe.png?resize=300%2C119&amp;ssl=1 300w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>Rendering panel with <code>background-color</code> applied</figcaption></figure>
+
+
+
+<p>In the second image, you can see that the same checkboxes are selected and a different result to the container. The “repaints on scroll” overlay is gone and the green overlay for painting is also gone. You can see the paint overlay on the scrollbar to show it was active.</p>
+
+
+
+<p><strong>Conclusion:</strong> make sure to apply some form of background color to your container when applying containment to get all the benefits.</p>
+
+
+
+<p>Here’s what I used for the test:</p>
+
+
+
+<div class="wp-block-cp-codepen-gutenberg-embed-block cp_embed_wrapper"><iframe id="cp_embed_35ed8ba3ac0714bd6dff2bbc936ac2be" src="//codepen.io/anon/embed/35ed8ba3ac0714bd6dff2bbc936ac2be?height=450&amp;theme-id=1&amp;slug-hash=35ed8ba3ac0714bd6dff2bbc936ac2be&amp;default-tab=result" height="450" scrolling="no" frameborder="0" allowfullscreen allowpaymentrequest name="CodePen Embed 35ed8ba3ac0714bd6dff2bbc936ac2be" title="CodePen Embed 35ed8ba3ac0714bd6dff2bbc936ac2be" class="cp_embed_iframe" style="width:100%;overflow:hidden">CodePen Embed Fallback</iframe></div>
+
+
+
+<h3>This is the bottom of the page</h3>
+
+
+
+<p>This article has covered the basics of the CSS <code>contain</code> property with its values, benefits, and potential performance gains. There are some excellent benefits to applying this property to certain elements in HTML; which elements need this applied is up to you. At least, that’s what I gather since I’m unaware of any specific guidance. The general idea is apply it to elements that are containers of other elements, especially those with some form of dynamic aspect to them.</p>
+
+
+
+<p>Some possible scenarios: grid areas of a CSS grid, elements containing third-party content, and containers that have dynamic content based on user interaction. There shouldn’t be any harm in using the property in these cases, assuming you aren’t trying to contain an element that does, in fact, rely in some way on another element outside that containment.</p>
+
+
+
+<p><a href="https://caniuse.com/%23feat=css-containment">Browser support is very strong.</a> Safari is the only holdout at this point. You can still use the property regardless because the browser simply skips over that code without error if it doesn’t understand the property or its value.</p>
+
+
+
+<p>So, feel free to start containing your stuff!</p>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/lets-take-a-deep-dive-into-the-css-contain-property/">Let&#8217;s Take a Deep Dive Into the CSS Contain Property</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://css-tricks.com/lets-take-a-deep-dive-into-the-css-contain-property/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">307895</post-id>	</item>
+		<item>
+		<title>I’m getting back to making videos</title>
+		<link>https://css-tricks.com/im-getting-back-to-making-videos/</link>
+					<comments>https://css-tricks.com/im-getting-back-to-making-videos/#comments</comments>
+		
+		<dc:creator><![CDATA[Chris Coyier]]></dc:creator>
+		<pubDate>Fri, 08 May 2020 00:51:44 +0000</pubDate>
+				<category><![CDATA[Article]]></category>
+		<category><![CDATA[screen recording]]></category>
+		<guid isPermaLink="false">https://css-tricks.com/?p=306781</guid>
+
+					<description><![CDATA[<p>It&#8217;s probably one part coronavirus, one part <a href="https://chriscoyier.net/2020/04/06/the-fancy-dslr-webcam-thing/">new-fancy-video setup</a>, and one part <em>&#8220;hey this is good for <a href="https://codepen.io/">CodePen</a> too,&#8221;</em> but I&#8217;ve been doing <a href="https://css-tricks.com/video-screencasts/">more videos</a> lately. It&#8217;s nice to be back in the swing of that for a minute. There&#8217;s something fun about coming back to an old familiar workflow.</p>
+<p>Where do the videos get published? I&#8217;m a publish-on-your-own site kinda guy, as I&#8217;m sure you know, so there is a whole <a href="https://css-tricks.com/video-screencasts/">Videos</a> section of this site where every &#8230; <a href="https://css-tricks.com/im-getting-back-to-making-videos/" class="read-more">Read article <span class="screen-reader-text"> &#8220;I&#8217;m getting back to making videos&#8221;</span></a></p>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/im-getting-back-to-making-videos/">I&#8217;m getting back to making videos</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>It&#8217;s probably one part coronavirus, one part <a href="https://chriscoyier.net/2020/04/06/the-fancy-dslr-webcam-thing/">new-fancy-video setup</a>, and one part <em>&#8220;hey this is good for <a href="https://codepen.io/">CodePen</a> too,&#8221;</em> but I&#8217;ve been doing <a href="https://css-tricks.com/video-screencasts/">more videos</a> lately. It&#8217;s nice to be back in the swing of that for a minute. There&#8217;s something fun about coming back to an old familiar workflow.</p>
+
+
+
+<span id="more-306781"></span>
+
+
+
+<p>Where do the videos get published? I&#8217;m a publish-on-your-own site kinda guy, as I&#8217;m sure you know, so there is a whole <a href="https://css-tricks.com/video-screencasts/">Videos</a> section of this site where every video we&#8217;ve ever published lives. There is also a <a href="https://www.youtube.com/user/realcsstricks/videos?app=desktop">YouTube channel</a>, of course, which is probably the most practical way for most people to subscribe. We&#8217;re about halfway to <a href="https://twitter.com/wesbos/status/1255145613789810688">Wes Bos-level</a>, so let&#8217;s go people!</p>
+
+
+
+<p>I had literally forgotten about it, but ages ago when I set this up, I created <a href="https://css-tricks.com/video-feed/">a special RSS feed</a> for the videos so I could submit it as <a href="https://podcasts.apple.com/us/podcast/css-tricks-screencasts/id273881728">a video podcast on iTunes</a>. That&#8217;s all still there and working! An interesting side note is that <em>this enables offline viewing</em>, as most <a href="https://en.wikipedia.org/wiki/List_of_podcatchers">podcatchers</a> can cache subscriptions. <a href="https://twitter.com/jhooks/status/1248753327749230592">Why build an app</a> when you get the core ability for free, right?</p>
+
+
+
+<p>I keep the original videos, of course. On individual video pages, I show a YouTube player that could be somewhat easily swapped out for another player if something crazy happened, like YouTube closes down or drastically changed their business model in some way that makes it problematic to show videos with their player. The originals are stored in an S3 bucket. If you&#8217;re an <a href="https://css-tricks.com/product/mvp-supporter/">MVP Supporter</a>, I give you the original high-quality download link right on the video pages. </p>
+
+
+
+<p>If your curious about my workflow, I&#8217;m still using <a href="http://www.telestream.net/screenflow/overview.htm">ScreenFlow</a>. I don&#8217;t make nearly enough use of it, but it feels good in that it&#8217;s fairly easy to use, very reliable and fast, and I can always learn and do more with it. Shooting my screen is easy and a built-in feature of ScreenFlow of course. I also have a <a href="https://amzn.to/35zSsvf">Rode Podcaster</a> on a boom arm at my desk so the audio is passable. And I just went through <a href="https://chriscoyier.net/2020/04/06/the-fancy-dslr-webcam-thing/">a whole process to use a DSLR camera</a> at my desk too, and I think the quality from that is great. It&#8217;s all a little funny because I have this whole sound recording booth as well, with <a href="https://css-tricks.com/1000-podcasting-setup/">a $1,000 audio setup</a> in there, but I only use that for podcasting. The lighting sucks in there, making it no good for video. </p>
+
+
+
+<p>It&#8217;s this new desk setup that has inspired me to do more video, and I suspect it will continue! One thing I could really use is a new high quality intro video. Just like a five-second thing with refreshed aesthetics. Anyone do that kind of work?</p>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/im-getting-back-to-making-videos/">I&#8217;m getting back to making videos</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://css-tricks.com/im-getting-back-to-making-videos/feed/</wfw:commentRss>
+			<slash:comments>2</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">306781</post-id>	</item>
+		<item>
+		<title>Exciting Things on the Horizon For CSS Layout</title>
+		<link>https://css-irl.info/exciting-things-on-the-horizon-for-css-layout/</link>
+		
+		<dc:creator><![CDATA[Chris Coyier]]></dc:creator>
+		<pubDate>Fri, 08 May 2020 00:51:37 +0000</pubDate>
+				<category><![CDATA[Link]]></category>
+		<category><![CDATA[flexbox]]></category>
+		<category><![CDATA[gap]]></category>
+		<category><![CDATA[grid]]></category>
+		<category><![CDATA[layout]]></category>
+		<guid isPermaLink="false">https://css-tricks.com/?p=308403</guid>
+
+					<description><![CDATA[<p>Michelle Barker notes that it&#8217;s been a heck of a week for us CSS layout nerds. </p>
+<ol>
+<li>Firefox has long had the best DevTools for CSS Grid, but Chrome is about to catch up and go one bit better by visualizing grid line numbers and names.</li>
+<li>Firefox supports <code>gap</code> for <code>display: flex</code>, which is <em>great</em>, and now Chrome is getting that too. </li>
+<li>Firefox is trying out an idea for masonry layout.</li>
+</ol>
+<p><a href="https://css-irl.info/exciting-things-on-the-horizon-for-css-layout/" title="Direct link to featured article">Direct Link to Article</a> &#8212; <a href="https://css-tricks.com/exciting-things-on-the-horizon-for-css-layout/">Permalink</a>&#8230; <a href="https://css-tricks.com/exciting-things-on-the-horizon-for-css-layout/" class="read-more">Read article <span class="screen-reader-text"> &#8220;Exciting Things on the Horizon For CSS Layout&#8221;</span></a></p>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/exciting-things-on-the-horizon-for-css-layout/">Exciting Things on the Horizon For CSS Layout</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>Michelle Barker notes that it&#8217;s been a heck of a week for us CSS layout nerds. </p>
+
+
+
+<ol><li>Firefox has long had the best DevTools for CSS Grid, but Chrome is about to catch up and go one bit better by visualizing grid line numbers and names.</li><li>Firefox supports <code>gap</code> for <code>display: flex</code>, which is <em>great</em>, and now Chrome is getting that too. </li><li>Firefox is trying out an idea for masonry layout.</li></ol>
+<p><a href="https://css-irl.info/exciting-things-on-the-horizon-for-css-layout/" title="Direct link to featured article">Direct Link to Article</a> &#8212; <a href="https://css-tricks.com/exciting-things-on-the-horizon-for-css-layout/">Permalink</a></p><p>The post <a rel="nofollow" href="https://css-tricks.com/exciting-things-on-the-horizon-for-css-layout/">Exciting Things on the Horizon For CSS Layout</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">308403</post-id>	</item>
+		<item>
+		<title>Creating an Accessible Range Slider with CSS</title>
+		<link>https://www.a11ywithlindsey.com/blog/creating-accessible-range-slider-css</link>
+		
+		<dc:creator><![CDATA[Chris Coyier]]></dc:creator>
+		<pubDate>Thu, 07 May 2020 18:17:01 +0000</pubDate>
+				<category><![CDATA[Article]]></category>
+		<category><![CDATA[accessibility]]></category>
+		<category><![CDATA[inputs]]></category>
+		<guid isPermaLink="false">https://css-tricks.com/?p=308161</guid>
+
+					<description><![CDATA[<p>The <a href="https://www.a11ywithlindsey.com/blog/creating-accessible-range-slider-css">accessibility trick</a> is using <code>&#60;input type="range"&#62;</code> and <a href="https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/">wrestling it into shape with CSS</a> rather than giving up and re-building it with divs or whatever and later forget about accessibility. </p>
+<p>The most clever example uses an angled <code>linear-gradient</code> background making the input look like a volume slider where left = low and right = high.</p>
+<p>CodePen Embed Fallback</p>
+<p><a href="https://www.a11ywithlindsey.com/blog/creating-accessible-range-slider-css" title="Direct link to featured article">Direct Link to Article</a> &#8212; <a href="https://css-tricks.com/creating-an-accessible-range-slider-with-css/">Permalink</a>&#8230; <a href="https://css-tricks.com/creating-an-accessible-range-slider-with-css/" class="read-more">Read article <span class="screen-reader-text"> &#8220;Creating an Accessible Range Slider with CSS&#8221;</span></a></p>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/creating-an-accessible-range-slider-with-css/">Creating an Accessible Range Slider with CSS</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>The <a href="https://www.a11ywithlindsey.com/blog/creating-accessible-range-slider-css">accessibility trick</a> is using <code>&lt;input type="range"&gt;</code> and <a href="https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/">wrestling it into shape with CSS</a> rather than giving up and re-building it with divs or whatever and later forget about accessibility. </p>
+
+
+
+<p>The most clever example uses an angled <code>linear-gradient</code> background making the input look like a volume slider where left = low and right = high.</p>
+
+
+
+<span id="more-308161"></span>
+
+
+
+<div class="wp-block-cp-codepen-gutenberg-embed-block cp_embed_wrapper"><iframe id="cp_embed_PowVaJd" src="//codepen.io/anon/embed/PowVaJd?height=350&amp;theme-id=1&amp;slug-hash=PowVaJd&amp;default-tab=result" height="350" scrolling="no" frameborder="0" allowfullscreen allowpaymentrequest name="CodePen Embed PowVaJd" title="CodePen Embed PowVaJd" class="cp_embed_iframe" style="width:100%;overflow:hidden">CodePen Embed Fallback</iframe></div>
+<p><a href="https://www.a11ywithlindsey.com/blog/creating-accessible-range-slider-css" title="Direct link to featured article">Direct Link to Article</a> &#8212; <a href="https://css-tricks.com/creating-an-accessible-range-slider-with-css/">Permalink</a></p><p>The post <a rel="nofollow" href="https://css-tricks.com/creating-an-accessible-range-slider-with-css/">Creating an Accessible Range Slider with CSS</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">308161</post-id>	</item>
+		<item>
+		<title>Working With MDX Custom Elements and Shortcodes</title>
+		<link>https://css-tricks.com/working-with-mdx-custom-elements-and-shortcodes/</link>
+					<comments>https://css-tricks.com/working-with-mdx-custom-elements-and-shortcodes/#respond</comments>
+		
+		<dc:creator><![CDATA[Agney Menon]]></dc:creator>
+		<pubDate>Thu, 07 May 2020 14:18:03 +0000</pubDate>
+				<category><![CDATA[Article]]></category>
+		<category><![CDATA[gatsby]]></category>
+		<category><![CDATA[markdown]]></category>
+		<category><![CDATA[mdx]]></category>
+		<category><![CDATA[react]]></category>
+		<guid isPermaLink="false">https://css-tricks.com/?p=307780</guid>
+
+					<description><![CDATA[<p><a href="https://mdxjs.com/">MDX</a> is a killer feature for things like blogs, slide decks and component documentation. It allows you to write Markdown without worrying about HTML elements, their formatting and placement while sprinkling in the magic of custom React components when necessary.</p>
+<p>Let’s harness that magic and look at how we can customize MDX by replacing Markdown elements with our own MDX components. In the process, we’ll introduce the concept of “shortcodes” when using those components.</p>
+<p>As a heads up, the code &#8230; <a href="https://css-tricks.com/working-with-mdx-custom-elements-and-shortcodes/" class="read-more">Read article <span class="screen-reader-text"> &#8220;Working With MDX Custom Elements and Shortcodes&#8221;</span></a></p>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/working-with-mdx-custom-elements-and-shortcodes/">Working With MDX Custom Elements and Shortcodes</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p><a href="https://mdxjs.com/">MDX</a> is a killer feature for things like blogs, slide decks and component documentation. It allows you to write Markdown without worrying about HTML elements, their formatting and placement while sprinkling in the magic of custom React components when necessary.</p>
+
+
+
+<p>Let’s harness that magic and look at how we can customize MDX by replacing Markdown elements with our own MDX components. In the process, we’ll introduce the concept of “shortcodes” when using those components.</p>
+
+
+
+<p>As a heads up, the code snippets here are based on <a href="https://www.gatsbyjs.org/">GatsbyJS</a> and <a href="https://reactjs.org/">React</a>, but MDX can be written with <a href="https://mdxjs.com/getting-started">different frameworks</a> as well. If you need a primer on MDX, <a href="https://css-tricks.com/an-introduction-to-mdxjs/">start here first</a>. This article extends that one with more advanced concepts.</p>
+
+
+
+<h3>Setting up a layout</h3>
+
+
+
+<p>We almost always want to render our MDX-based pages in a common layout. That way, they can be arranged with other components on our website. We can specify a default <code>Layout</code> component with the MDX plugin we’re using. For example. we can define a a layout with the <a href="https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-mdx"><code>gatsby-plugin-mdx</code></a> plugin like this:</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">{
+  resolve: `gatsby-plugin-mdx`,
+  options: {
+    defaultLayouts: {
+      default: path.resolve('./src/templates/blog-post.js'),
+    },
+    // ...other options
+  }
+}</code></pre>
+
+
+
+<p>This would require the <code>src/templates/blog-post.js</code> file to contain a component that would render the <code>children</code> prop it receives.</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">import { MDXRenderer } from 'gatsby-plugin-mdx';
+ 
+function BlogPost({ children }) {
+  return (
+    &lt;div>{children}&lt;/div>
+  );
+}
+ 
+export default BlogPost;</code></pre>
+
+
+
+<p>If we are programmatically creating pages, we’d have to use a component named <code>MDXRenderer</code> to achieve the same thing, as specified in the <a href="https://www.gatsbyjs.org/docs/mdx/programmatically-creating-pages/%23make-a-template-for-your-posts">Gatsby docs</a>.</p>
+
+
+
+<h3>Custom Markdown elements</h3>
+
+
+
+<p>While MDX is a format where that lets us write custom HTML and React components, its power is rendering Markdown with custom content. But what if we wanted to customize how these Markdown elements render on screen?</p>
+
+
+
+<p>We could surely <a href="https://www.gatsbyjs.org/docs/mdx/plugins/%23remark-plugins">write a remark plugin for it</a>, but MDX provides us with a better, simpler solution. By default, these are some of the elements being rendered by Markdown:</p>
+
+
+
+<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>Name</th><th>HTML Element</th><th>MDX Syntax</th></tr></thead><tbody><tr><td><a href="https://github.com/syntax-tree/mdast#paragraph">Paragraph</a></td><td><code>&lt;p&gt;</code></td><td></td></tr><tr><td><a href="https://github.com/syntax-tree/mdast#heading">Heading 1</a></td><td><code>&lt;h1&gt;</code></td><td><code>#</code></td></tr><tr><td><a href="https://github.com/syntax-tree/mdast#heading">Heading 2</a></td><td><code>&lt;h2&gt;</code></td><td><code>##</code></td></tr><tr><td><a href="https://github.com/syntax-tree/mdast#heading">Heading 3</a></td><td><code>&lt;h3&gt;</code></td><td><code>###</code></td></tr><tr><td><a href="https://github.com/syntax-tree/mdast#heading">Heading 4</a></td><td><code>&lt;h4&gt;</code></td><td><code>####</code></td></tr><tr><td><a href="https://github.com/syntax-tree/mdast#heading">Heading 5</a></td><td><code>&lt;h5&gt;</code></td><td><code>#####</code></td></tr><tr><td><a href="https://github.com/syntax-tree/mdast#heading">Heading 6</a></td><td><code>&lt;h6&gt;</code></td><td><code>######</code></td></tr><tr><td><a href="https://github.com/syntax-tree/mdast#list">Unordered List</a></td><td><code>&lt;ul&gt;</code></td><td><code>-</code></td></tr><tr><td><a href="https://github.com/syntax-tree/mdast#list">Ordered List</a></td><td><code>&lt;ol /&gt;</code></td><td><code>1.</code></td></tr><tr><td><a href="https://github.com/syntax-tree/mdast#image">Image</a></td><td><code>&lt;img /&gt;</code></td><td><code>![alt](https://image-url)</code></td></tr></tbody></table><figcaption>A&nbsp;complete list of components&nbsp;is available in the&nbsp;<a rel="noreferrer noopener" target="_blank" href="https://mdxjs.com/table-of-components">MDX Docs</a>.</figcaption></figure>
+
+
+
+<p>To replace these defaults with our custom React components, MDX ships with a <code>Provider</code> component named &nbsp;<code>MDXProvider</code>. It relies on the <a href="https://reactjs.org/docs/context">React Context API</a> to inject new custom components and merge them into the defaults provided by MDX.</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">import React from 'react';
+import { MDXProvider } from "@mdx-js/react";
+import Image from './image-component';
+ 
+function Layout({ children }) {
+  return (
+    &lt;MDXProvider
+      components={{
+        h1: (props) => &lt;h1 {...props} className="text-xl font-light" />
+        img: Image,
+      }} 
+    >
+      {children}
+    &lt;/MDXProvider>
+  );
+}
+ 
+export default Layout;</code></pre>
+
+
+
+<p>In this example, any H1 heading (<code>#</code>) in the MDX file will be replaced by the custom implementation specified in the <code>Provider</code> component’s prop while all the other elements will continue to use the defaults. In other words, <code>MDXProvider</code> is able to take our custom markup for a H1 element, merge it with MDX defaults, then apply the custom markup when we write Heading 1 (<code>#</code>) in an MDX file.</p>
+
+
+
+<h3>MDX and custom components</h3>
+
+
+
+<p>Customizing MDX elements is great, but what if we want to introduce <em>our own</em> components into the mix?</p>
+
+
+
+<pre rel="MDX" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">---
+title: Importing Components
+---
+import Playground from './Playground';
+ 
+Here is a look at the `Playground` component that I have been building:
+ 
+&lt;Playground /></code></pre>
+
+
+
+<p>We can import a component into an MDX file and use it the same way we would any React component. And, sure, while this works well for something like a component demo in a blog post, what if we want to use Playground on all blog posts? It would be a pain to import them to all the pages. Instead. <a href="https://mdxjs.com/blog/shortcodes">MDX presents us with the option to use shortcodes.</a> Here’s how the MDX documentation describes shortcodes:</p>
+
+
+
+<blockquote class="wp-block-quote"><p>[A shortcode] allows you to expose components to all of your documents in your app or website. This is a useful feature for common components like YouTube embeds, Twitter cards, or anything else frequently used in your documents.</p></blockquote>
+
+
+
+<p>To include shortcodes in an MDX application, we have to rely on the <code>MDXProvider</code> component again.</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">import React from 'react';
+import { MDXProvider } from "@mdx-js/react";
+import Playground from './playground-wrapper';
+ 
+function Layout({ children }) {
+  return (
+    &lt;MDXProvider
+      components={{
+        h1: (props) => &lt;h1 {...props} className="text-xl font-light" />
+        Playground,
+      }} 
+    >
+      {children}
+    &lt;/MDXProvider>
+  );
+}
+ 
+export default Layout;</code></pre>
+
+
+
+<p>Once we have included custom components into the components object, we can proceed to use them without importing in MDX files.</p>
+
+
+
+<pre rel="MDX" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">---
+title: Demoing concepts
+---
+ 
+Here's the demo for the new concept:
+ 
+&lt;Playground />
+ 
+> Look ma! No imports</code></pre>
+
+
+
+<h3>Directly manipulating child components</h3>
+
+
+
+<p>In React, we get top-level APIs to manipulate children with <a href="https://reactjs.org/docs/react-api.html%23reactchildren"><code>React.Children</code></a>. We can use these to pass new props to child components that change their order or determine their visibility. MDX provides us a special wrapper component to access the child components passed in by MDX.</p>
+
+
+
+<p>To add a wrapper, we can use the <code>MDXProvider</code> as we did before:</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+const components = {
+  wrapper: ({ children, ...props }) => {
+    const reversedChildren = React.Children.toArray(children).reverse();
+    return &lt;>{reversedChildren}&lt;/>;
+  },
+};
+export default (props) => (
+  &lt;MDXProvider components={components}>
+    &lt;main {...props} />
+  &lt;/MDXProvider>
+);</code></pre>
+
+
+
+<p>This example reverses the children so that they appear in reverse order that we wrote it in. </p>
+
+
+
+<p>We can even go wild and animate all of MDX children as they come in:</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">import React from "react";
+import { MDXProvider } from "@mdx-js/react";
+import { useTrail, animated, config } from "react-spring";
+ 
+const components = {
+  wrapper: ({ children, ...props }) => {
+    const childrenArray = React.Children.toArray(children);
+    const trail = useTrail(childrenArray.length, {
+      xy: [0, 0],
+      opacity: 1,
+      from: { xy: [30, 50], opacity: 0 },
+      config: config.gentle,
+      delay: 200,
+    });
+    return (
+      &lt;section>
+        {trail.map(({ y, opacity }, index) => (
+          &lt;animated.div
+            key={index}
+            style={{
+              opacity,
+              transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
+            }}
+          >
+            {childrenArray[index]}
+          &lt;/animated.div>
+        ))}
+      &lt;/section>
+    );
+  },
+};
+ 
+export default (props) => (
+  &lt;MDXProvider components={components}>
+    &lt;main {...props} />
+  &lt;/MDXProvider>
+);</code></pre>
+
+
+
+<figure class="wp-block-video ticss-de6c81a9"><video controls src="https://css-tricks.com/wp-content/uploads/2020/04/Screen-Recording-2020-04-10-at-2.00.18-AM.mp4"></video></figure>
+
+
+
+<h3>Wrapping up</h3>
+
+
+
+<p>MDX is designed with flexibility out of the box, but extending with a plugin can make it do even more. Here’s what we were just able to do in a short amount of time, thanks to <a href="https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-mdx"><code>gatsby-plugin-mdx</code></a>:</p>
+
+
+
+<ol><li>Create default Layout components that help format the MDX output.</li><li>Replace default HTML elements rendered from Markdown with custom components</li><li>Use shortcodes to get rid of us of importing components in every file.</li><li>Manipulate children directly to change the MDX output.</li></ol>
+
+
+
+<p>Again, this is just another drop in the bucket as far as what MDX does to help make writing content for static sites easier.</p>
+
+
+
+<h4>More on MDX</h4>
+
+
+
+<ul><li><a href="https://css-tricks.com/an-introduction-to-mdxjs/">An Introduction to MDX</a></li><li><a href="https://css-tricks.com/front-end-documentation-style-guides-and-the-rise-of-mdx/">Front-End Documentation, Style Guides and the Rise of MDX</a></li></ul>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/working-with-mdx-custom-elements-and-shortcodes/">Working With MDX Custom Elements and Shortcodes</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://css-tricks.com/working-with-mdx-custom-elements-and-shortcodes/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">307780</post-id>	</item>
+		<item>
+		<title>Static Hoisting</title>
+		<link>https://rauchg.com/2020/static-hoisting</link>
+					<comments>https://css-tricks.com/static-hoisting/#respond</comments>
+		
+		<dc:creator><![CDATA[Chris Coyier]]></dc:creator>
+		<pubDate>Wed, 06 May 2020 21:09:28 +0000</pubDate>
+				<category><![CDATA[Article]]></category>
+		<category><![CDATA[cdn]]></category>
+		<category><![CDATA[jamstack]]></category>
+		<guid isPermaLink="false">https://css-tricks.com/?p=308268</guid>
+
+					<description><![CDATA[<p>The other day in <a href="https://css-tricks.com/static-or-not/">&#8220;Static or not?&#8221;</a> I said:</p>
+<blockquote class="wp-block-quote">
+<p>[&#8230;] serving HTML from a CDN is some feat.</p>
+</blockquote>
+<p>What I meant is that serving resources like images, CSS, and JavaScript from a CDN is fairly straightforward. The industry at large has been doing that for many years. An asset with a URL can be moved to a CDN and served from it. Changes to that asset are usually handled by changing the URL (e.g. <code>style.324535.css</code>, <code>style.css?v=345434</code> or the like) &#8230; <a href="https://css-tricks.com/static-hoisting/" class="read-more">Read article <span class="screen-reader-text"> &#8220;Static Hoisting&#8221;</span></a></p>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/static-hoisting/">Static Hoisting</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>The other day in <a href="https://css-tricks.com/static-or-not/">&#8220;Static or not?&#8221;</a> I said:</p>
+
+
+
+<blockquote class="wp-block-quote"><p>[&#8230;] serving HTML from a CDN is some feat.</p></blockquote>
+
+
+
+<p>What I meant is that serving resources like images, CSS, and JavaScript from a CDN is fairly straightforward. The industry at large has been doing that for many years. An asset with a URL can be moved to a CDN and served from it. Changes to that asset are usually handled by changing the URL (e.g. <code>style.324535.css</code>, <code>style.css?v=345434</code> or the like) so that we can take full advantage of browser cache. But HTML is a little different. The URLs to our HTML are the URLs of our public-facing websites and those URLs don&#8217;t change.</p>
+
+
+
+<p>Historically, we&#8217;ve said &#8220;oh well&#8221; to this. Our web servers will serve our HTML and we&#8217;ll just do the best we can with performance there. But the Jamstack approach is changing that by saying, <em>actually, we&#8217;ll serve that HTML from a CDN as well.</em> </p>
+
+
+
+<p>Guillermo Rauch calls that &#8220;hoisting&#8221; and likens it to how JavaScript hoists declarations higher in code. Jamstack hoists static assets higher in the hosting stack.</p>
+
+
+
+<blockquote class="wp-block-quote"><p>What Jamstack as a software architecture has now made possible, however, is to&nbsp;<strong>hoisting the results of computation to the edge</strong>, right next to where your visitors are.</p><p>A core tenet of Jamstack has been to&nbsp;<strong>pre-render (pre-compute) as much as possible</strong>, which has given prominence to static site generation. The key idea is that computation that would have happened later on, in the request&#8217;s timeline, has now been shifted to the build phase, performed once and made available for all users to share.</p></blockquote>
+
+
+
+<p>Hoisting, notably, happens automatically. What can be hoisted will be hoisted. But things that need servers to run (e.g. cloud functions and API stuff) can still do that. Getting even more complex, in our <a href="https://shoptalkshow.com/403/">talk with Brian Leroux</a>, Dave and I got into how even the results of cloud function execution can be put on a CDN and cached.</p>
+<p><a href="https://rauchg.com/2020/static-hoisting" title="Direct link to featured article">Direct Link to Article</a> &#8212; <a href="https://css-tricks.com/static-hoisting/">Permalink</a></p><p>The post <a rel="nofollow" href="https://css-tricks.com/static-hoisting/">Static Hoisting</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://css-tricks.com/static-hoisting/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">308268</post-id>	</item>
+		<item>
+		<title>How to Use Block Variations in WordPress</title>
+		<link>https://css-tricks.com/how-to-use-block-variations-in-wordpress/</link>
+					<comments>https://css-tricks.com/how-to-use-block-variations-in-wordpress/#comments</comments>
+		
+		<dc:creator><![CDATA[Dmitry Mayorov]]></dc:creator>
+		<pubDate>Wed, 06 May 2020 14:43:36 +0000</pubDate>
+				<category><![CDATA[Article]]></category>
+		<category><![CDATA[gutenberg]]></category>
+		<category><![CDATA[WordPress]]></category>
+		<category><![CDATA[WordPress blocks]]></category>
+		<guid isPermaLink="false">https://css-tricks.com/?p=307800</guid>
+
+					<description><![CDATA[<p>WordPress 5.4 was released not so long ago and, along with other improvements and bug fixes, it introduced a feature called Block Variations. I had a chance to use it on one of my recent projects and am so pleasantly surprised with how smart this feature is. I actually think it hasn’t received the attention it deserves, which is why I decided to write this article.</p>
+<p>What is a Block Variation?</p>
+<p><em>Block Variations</em> allow developers to define instances of <em>existing </em>&#8230; <a href="https://css-tricks.com/how-to-use-block-variations-in-wordpress/" class="read-more">Read article <span class="screen-reader-text"> &#8220;How to Use Block Variations in WordPress&#8221;</span></a></p>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/how-to-use-block-variations-in-wordpress/">How to Use Block Variations in WordPress</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>WordPress 5.4 was released not so long ago and, along with other improvements and bug fixes, it introduced a feature called Block Variations. I had a chance to use it on one of my recent projects and am so pleasantly surprised with how smart this feature is. I actually think it hasn’t received the attention it deserves, which is why I decided to write this article.</p>
+
+
+
+<span id="more-307800"></span>
+
+
+
+<h3>What is a Block Variation?</h3>
+
+
+
+<p><em>Block Variations</em> allow developers to define instances of <em>existing blocks</em>. An example that you’ll see below is a quote block. Perhaps your site has three variations of how to display a quote on your site. A Block Variation can be created for each one so that they are all styled differently. This sounds awfully familiar with how Block Styles, but the concept of variations goes a bit further than that, as we’ll see.</p>
+
+
+
+<h3>How are Block Variations different from Block Styles?</h3>
+
+
+
+<p>Fair question. Block variations appear in the inserter as separate blocks with unique names and (optionally) icons and can have pre-filled custom attributes, and inner blocks.</p>
+
+
+
+<p><a href="https://developer.wordpress.org/block-editor/developers/filters/block-filters/#block-style-variations">Block Styles</a> are designed to alter the look of the block. In fact, a Block Style is a fancy way of adding a custom class to a block using the Block options in the post editor.</p>
+
+
+
+<p>The difference is clear when you consider how each one is used in the post editor. Let’s say we register a new Block Style called “Fancy Quote.” We do that by extending the core “Quote” block like this example from the <a href="https://developer.wordpress.org/block-editor/developers/filters/block-filters/">Block Editor Handbook</a>:</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">wp.blocks.registerBlockStyle(
+  'core/quote',
+  {
+    name: 'fancy-quote',
+    label: 'Fancy Quote'
+  },
+);</code></pre>
+
+
+
+<p>This adds a <code>.is-style-fancy-quote</code> class to the Quote block settings in the post editor.</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/N4D-NO6m.jpeg?fit=1024%2C613&amp;ssl=1" alt="Screenshot of the Block options in the WordPress post editor highlighting the options for a quote block. A &quot;Fancy Quote&quot; option is listed under Styles and the custom class name is in an Additional CSS Classes field." class="wp-image-307803" srcset="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/N4D-NO6m.jpeg?w=2560&amp;ssl=1 2560w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/N4D-NO6m.jpeg?resize=300%2C180&amp;ssl=1 300w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/N4D-NO6m.jpeg?resize=1024%2C613&amp;ssl=1 1024w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/N4D-NO6m.jpeg?resize=768%2C460&amp;ssl=1 768w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/N4D-NO6m.jpeg?resize=1536%2C919&amp;ssl=1 1536w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/N4D-NO6m.jpeg?resize=2048%2C1226&amp;ssl=1 2048w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/N4D-NO6m.jpeg?resize=1000%2C598&amp;ssl=1 1000w" sizes="(min-width: 735px) 864px, 96vw" /><figcaption>We now have a Fancy Quote option in the Block options under &#8220;Styles&#8221; and the class for it filled in for us.</figcaption></figure>
+
+
+
+<p>Even though it sort of sounds like it would do the same thing (which it technically can), a Block Variation can be used to pre-fill custom attributes (including custom classes) and inner blocks. They’re actually registered as separate blocks.</p>
+
+
+
+<p>Let’s take a closer look at the API and what block variations can do.</p>
+
+
+
+<h3>Creating a Block Variation</h3>
+
+
+
+<p>The API for registering Block Variations is very similar that of the Block Style we just looked at:</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">wp.blocks.registerBlockVariation(
+  'core/quote',
+  {
+    name: 'fancy-quote',
+    title: 'Fancy Quote',
+  },
+);</code></pre>
+
+
+
+<p>The <code>registerBlockVariation</code> function accepts the name of the block (in our case it is core/quote) and an object (or an array of objects) describing the variation(s).</p>
+
+
+
+<p>The code above doesn’t do much by default, but it does add “Fancy Quote” to the list of available blocks.</p>
+
+
+
+<figure class="wp-block-image size-large is-resized"><img src="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/ORmgmFQA.jpeg?resize=436%2C313&#038;ssl=1" alt="Showing the Fancy Quote variation in the WordPress Block Inserter." class="wp-image-307804" width="436" height="313" srcset="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/ORmgmFQA.jpeg?w=872&amp;ssl=1 872w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/ORmgmFQA.jpeg?resize=300%2C215&amp;ssl=1 300w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/ORmgmFQA.jpeg?resize=768%2C551&amp;ssl=1 768w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>We now have two different&nbsp;“quote”&nbsp;blocks available to drop into the post.</figcaption></figure>
+
+
+
+<p>To take full advantage of the variation. we need to provide more details in the object describing it. The list is covered in the <a href="https://make.wordpress.org/core/2020/02/27/introduce-block-variations-api/">Make WordPress post</a>, but I’ll share it here and provide additional comments.</p>
+
+
+
+<ul><li><code><strong>name</strong></code> – The unique and machine-readable name of the variation. Following the examples on Github and Make post it’s safe to assume that the best practice is to use kebab-case for naming variations.</li><li><code><strong>title</strong></code> – A human-readable variation title. This is what appears under the icon in the Inserter.</li><li><strong><code>description</code></strong> – A detailed variation description. Appears in the Inserter as well. If empty, the default block description will be used. (Optional)</li><li><strong><code>icon</code></strong> – An icon for the variation. Can be a <a href="https://developer.wordpress.org/resource/dashicons/%23art">Dashicons</a> slug, an SVG or an object. Follows the same declaration pattern as in <a href="https://developer.wordpress.org/block-editor/developers/block-api/block-registration/%23icon-optional"><code>registerBlockType</code></a>. (Optional)</li><li><strong><code>isDefault</code></strong> – Indicates whether the current variation is the default one. Defaults to <code>false</code>. In case of our example, if we set it to <code>true</code>, the <em>Fancy Quote</em> block will be the only Quote block available in the inserter. (Optional)</li><li><strong><code>attributes</code></strong> – Values that override block attributes. These are block-specific. You can set the <code>level</code> for the <em>Heading</em> block or <code>height</code> for <em>Spacer, </em>for example.</li><li><strong><code>innerBlocks</code></strong> – Initial configuration of nested blocks. Only applies to blocks that allow inner blocks in the first place, like Columns, Cover, or Group. We’ll cover this in one of the examples. (Optional)</li><li><strong><code>example</code></strong> – Example provides structured data for the block preview. You can set it to <code>undefined</code> to disable the preview shown for the block type. This is the same as the example field in <code>registerBlockType</code>. (Optional) There&#8217;s <a href="https://developer.wordpress.org/block-editor/developers/block-api/block-registration/%23example-optional">more information</a> available on this parameter.</li><li><strong><code>scope</code></strong> – The list of scopes where the variation is applicable. When not provided, it assumes all available scopes. Available options are <code>block</code> and <code>inserter</code>. We’ll cover this in detail in one of the examples.</li></ul>
+
+
+
+<p>Many of you may wonder why we need this extra layer of abstraction. Let me try to answer that with a few use cases (one form my recent project).</p>
+
+
+
+<h3>Use case: Buttons with different widths</h3>
+
+
+
+<p>Let’s say you have a design system with two types of buttons: <em>Fill</em> and <em>Outline</em>.</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/3CplmPmh.jpeg?fit=1024%2C256&amp;ssl=1" alt="Two buttons, one with a green fill and one with a green border. Both say Learn More." class="wp-image-307805" srcset="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/3CplmPmh.jpeg?w=1400&amp;ssl=1 1400w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/3CplmPmh.jpeg?resize=300%2C75&amp;ssl=1 300w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/3CplmPmh.jpeg?resize=1024%2C256&amp;ssl=1 1024w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/3CplmPmh.jpeg?resize=768%2C192&amp;ssl=1 768w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/3CplmPmh.jpeg?resize=1000%2C250&amp;ssl=1 1000w" sizes="(min-width: 735px) 864px, 96vw" /><figcaption>Fill and Outline button styles in the design system</figcaption></figure>
+
+
+
+<p>Lucky you, because these are the default styles for buttons in WordPress. No need to register any new styles or hack the editor. All you have to do is write some CSS for each style and call it a day. Life is good and everybody’s happy.</p>
+
+
+
+<p>But then you look in the design spec again and notice that there is a little twist. The buttons come in three widths: <em>Regular</em>, <em>Wide</em>, and <em>Full</em>.</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ojNU1TyS-scaled.jpeg?fit=1024%2C317&amp;ssl=1" alt="The same green buttons but with additional variations at two different widths for a totally of six buttons." class="wp-image-307807" srcset="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ojNU1TyS-scaled.jpeg?w=2560&amp;ssl=1 2560w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ojNU1TyS-scaled.jpeg?resize=300%2C93&amp;ssl=1 300w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ojNU1TyS-scaled.jpeg?resize=1024%2C317&amp;ssl=1 1024w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ojNU1TyS-scaled.jpeg?resize=768%2C238&amp;ssl=1 768w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ojNU1TyS-scaled.jpeg?resize=1536%2C476&amp;ssl=1 1536w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ojNU1TyS-scaled.jpeg?resize=2048%2C634&amp;ssl=1 2048w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ojNU1TyS-scaled.jpeg?resize=1000%2C310&amp;ssl=1 1000w" sizes="(min-width: 735px) 864px, 96vw" /><figcaption>Fill and Outline button styles with different width variations</figcaption></figure>
+
+
+
+<p>Dammit! You are a little upset because you now have two options:</p>
+
+
+
+<ol><li>Write two extra classes for the new button sizes (say, <code>.is-wide</code> and <code>.is-full</code>), then teach the client to use the <em>Advanced</em> panel in the editor to add those classes and write a manual where you explain what each class does. Or…</li><li>Register four(!) new styles that go in the Block options: <em>Fill Wide</em>, <em>Fill Full</em>, <em>Outline Wide</em>, and <em>Outline Full</em>.</li></ol>
+
+
+
+<p>Neither of those options are exactly elegant. (BTW, what is <em>Fill Full</em> exactly? Quite an unfortunate mouthful!)</p>
+
+
+
+<p>There are two more options that I didn’t include in the list:</p>
+
+
+
+<ul><li>Filter the button block and add a custom width control to it</li><li>Build a custom block from scratch.</li></ul>
+
+
+
+<p>These obviously feel like heavy lifts for such a simple task.</p>
+
+
+
+<p>Enter Block Variations! By adding just two variations, <em>Full</em> and <em>Wide</em>,<em> we can </em>keep things clean and simple:</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">wp.blocks.registerBlockVariation(
+  'core/buttons',
+  [
+    {
+      name: 'wide',
+      title: 'Wide Buttons',
+      attributes: {
+        className: 'is-wide'
+      },
+  },
+  {
+      name: 'full',
+      title: 'Full Buttons',
+      attributes: {
+        className: 'is-full'
+      },
+    }
+  ]
+);</code></pre>
+
+
+
+<p>This is the same as adding a custom class to the Buttons block, but in a neat and elegant way that can be dropped directly into a post from the Block Inserter:</p>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img src="https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/2Aa-Hu0g.jpeg?resize=436%2C313&#038;ssl=1" alt="Showing the Wide and Full button variations in the WordPress Block Inserter." class="wp-image-307808" width="436" height="313" srcset="https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/2Aa-Hu0g.jpeg?w=872&amp;ssl=1 872w, https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/2Aa-Hu0g.jpeg?resize=300%2C215&amp;ssl=1 300w, https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/2Aa-Hu0g.jpeg?resize=768%2C551&amp;ssl=1 768w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>Button variations in the inserter</figcaption></figure>
+
+
+
+<p>Life is good and everybody is happy again! <strong>So what did we learn from this example?</strong></p>
+
+
+
+<ul><li>It shows that Block Variations are not designed to replace Block Styles. In fact, they can work pretty well together even if the variation just adds a class to a block.</li><li>It demos how to register multiple variations in a single declaration.</li></ul>
+
+
+
+<h3>Use case: Repeating column layouts</h3>
+
+
+
+<p>Let’s say you are a designer and have a portfolio website with case studies. Each case study has an intro section with the name of the project, client information, and a description of  your role on the project. It might look something like this:</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ZK0M_RN-.jpeg?fit=1024%2C256&amp;ssl=1" alt="Showing three columns, one that says Website Design, one that says Clients, and one says Role. Each one represents a column we want on the page." class="wp-image-307833" srcset="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ZK0M_RN-.jpeg?w=2248&amp;ssl=1 2248w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ZK0M_RN-.jpeg?resize=300%2C75&amp;ssl=1 300w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ZK0M_RN-.jpeg?resize=1024%2C256&amp;ssl=1 1024w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ZK0M_RN-.jpeg?resize=768%2C192&amp;ssl=1 768w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ZK0M_RN-.jpeg?resize=1536%2C384&amp;ssl=1 1536w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ZK0M_RN-.jpeg?resize=2048%2C512&amp;ssl=1 2048w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/ZK0M_RN-.jpeg?resize=1000%2C250&amp;ssl=1 1000w" sizes="(min-width: 735px) 864px, 96vw" /><figcaption>The type of work (left), who it was for (center) and your role on it (right)</figcaption></figure>
+
+
+
+<p>The problem is that it’s a bit tedious to build this part of the layout every time you create a new portfolio case study — especially because the <em>Client</em> and <em>My Role</em> headings never change. You are only editing the main title and two paragraphs.</p>
+
+
+
+<p>With Block Variations, you can create a variation of a core <em>Columns </em>block called <em>Project Intro</em> that will have the columns, and inner blocks already defined. This example is a bit more involved, so we’ll build it out step-by-step.</p>
+
+
+
+<p>Let’s start with registering the variation:</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">wp.blocks.registerBlockVariation(
+  'core/columns', {
+    name: 'project-intro',
+    title: 'Project Intro',
+    scope: ['inserter'],
+    innerBlocks: [
+      ['core/column'],
+      ['core/column'],
+      ['core/column'],
+    ],
+  }
+);</code></pre>
+
+
+
+<p>We are taking this example a bit further than the first one, so why not add a custom <a href="https://developer.wordpress.org/resource/dashicons/%23portfolio">portfolio icon</a> from the <a href="https://developer.wordpress.org/resource/dashicons/">Dashicons library</a> that’s baked right into WordPress? We do that with the <code>icon</code> property.</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line="5"><code markup="tt">wp.blocks.registerBlockVariation(
+  'core/columns', {
+    name: 'project-intro',
+    title: 'Project Intro',
+    icon: 'portfolio',
+    scope: ['inserter'],
+    innerBlocks: [
+      ['core/column'],
+      ['core/column'],
+      ['core/column'],
+    ],
+  }
+);</code></pre>
+
+
+
+<p>This will make the block available in the block menu with our icon:</p>
+
+
+
+<figure class="wp-block-image size-large is-resized"><img src="https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/kxEOgefw.jpeg?resize=436%2C313&#038;ssl=1" alt="Variation with a custom icon in the Block Inserter." class="wp-image-307836" width="436" height="313" srcset="https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/kxEOgefw.jpeg?w=872&amp;ssl=1 872w, https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/kxEOgefw.jpeg?resize=300%2C215&amp;ssl=1 300w, https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/kxEOgefw.jpeg?resize=768%2C551&amp;ssl=1 768w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /></figure>
+
+
+
+<p>The next important thing happens on where we add inner blocks:</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line="7,8,9,10,11"><code markup="tt">wp.blocks.registerBlockVariation(
+  'core/columns', {
+    name: 'project-intro',
+    title: 'Project Intro',
+    icon: 'portfolio',
+    scope: ['inserter'],
+    innerBlocks: [
+      ['core/column'],
+      ['core/column'],
+      ['core/column'],
+    ],
+  }
+);</code></pre>
+
+
+
+<p>But this only gives us three empty columns. Let’s add starter content and inner blocks to each of them. We can use the same pattern we use to declare a block template in the <a href="https://github.com/WordPress/gutenberg/tree/master/packages/block-editor/src/components/inner-blocks%23template"><code>InnerBlocks</code> </a>component. We can add an object with block attributes as a second element in the array describing the block, and an array of inner blocks as the third element.</p>
+
+
+
+<p>The first column will look like this:</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">['core/column', {}, [
+  ['core/heading', { level: 2, placeholder: 'Project Title'} ],
+]]</code></pre>
+
+
+
+<p>…and the complete block variation is like this:</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">wp.blocks.registerBlockVariation (
+  'core/columns', {
+    name: 'project-intro',
+    title: 'Project Intro',
+    icon: 'portfolio',
+    scope: ['inserter'],
+    innerBlocks: [
+      ['core/column', {}, [
+        ['core/heading', { level: 2, placeholder: 'Project Title' }],
+      ]],
+      ['core/column', {}, [
+        ['core/heading', { level: 3, content: 'Client' }],
+        ['core/paragraph', { placeholder: 'Enter client info' }],
+      ]],
+      ['core/column', {}, [
+        ['core/heading', { level: 3, content: 'My Role' }],
+        ['core/paragraph', { placeholder: 'Describe your role' }],
+      ]],
+    ],
+  }
+);</code></pre>
+
+
+
+<p>Cool, now we can insert the whole section with just one click. Okay, it’s a few clicks, but still faster than without using the variations.</p>
+
+
+
+<p><strong>So what did we learn from this example?</strong></p>
+
+
+
+<ul><li>And demos how to use the inner blocks within the variation</li><li>It shows how to define a custom icon for a variation</li></ul>
+
+
+
+<h3>Use case: Four-column layout</h3>
+
+
+
+<p>You already know that columns are a default block type, and that there are a handful of options for different types of columns. A four-column layout isn’t one of them, so we can build that. But this introduces a new concept as well: <em>scoping</em> in context of block variations.</p>
+
+
+
+<p>Some core blocks, like <em>Columns, </em>already offer variations out of the box. You can choose one of them <em>after</em> you insert the block on the page:</p>
+
+
+
+<figure class="wp-block-image size-large is-resized"><img src="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/DcKQfY58.jpeg?fit=1024%2C390&amp;ssl=1" alt="Showing the columns block inserted with 5 different layout options to display up to 3 columns at varying widths." class="wp-image-307837" width="512" height="195" srcset="https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/DcKQfY58.jpeg?w=1160&amp;ssl=1 1160w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/DcKQfY58.jpeg?resize=300%2C114&amp;ssl=1 300w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/DcKQfY58.jpeg?resize=1024%2C390&amp;ssl=1 1024w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/DcKQfY58.jpeg?resize=768%2C293&amp;ssl=1 768w, https://i1.wp.com/css-tricks.com/wp-content/uploads/2020/04/DcKQfY58.jpeg?resize=1000%2C381&amp;ssl=1 1000w" sizes="(min-width: 735px) 864px, 96vw" /><figcaption>Block-scoped variations</figcaption></figure>
+
+
+
+<p>Let’s say you use a four-column layout on your website as often as you use two-column one. That’s unfortunate, because there is no shortcut button to create four-column layout. Creating one is a bit annoying because it takes extra clicks to get to the Columns control after the block is inserted:</p>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/t521R_YU.jpeg?fit=1024%2C500&amp;ssl=1" alt="Showing the slider control to change the number of columns in the Block settings." class="wp-image-307838" srcset="https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/t521R_YU.jpeg?w=1973&amp;ssl=1 1973w, https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/t521R_YU.jpeg?resize=300%2C146&amp;ssl=1 300w, https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/t521R_YU.jpeg?resize=1024%2C500&amp;ssl=1 1024w, https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/t521R_YU.jpeg?resize=768%2C375&amp;ssl=1 768w, https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/t521R_YU.jpeg?resize=1536%2C750&amp;ssl=1 1536w, https://i2.wp.com/css-tricks.com/wp-content/uploads/2020/04/t521R_YU.jpeg?resize=1000%2C488&amp;ssl=1 1000w" sizes="(min-width: 735px) 864px, 96vw" /></figure>
+
+
+
+<p>So, what can you do to improve this workflow? Right, you can add a Block Variation that will create a four-column layout. The only difference this time, compared to previous examples, is that it makes much more sense to include this variation inside the block placeholder, next to all other column layouts.</p>
+
+
+
+<p>That is exactly what the scope option is for. If you set it to <code>[block]</code>, the variation will <em>not</em> appear in the Block Inserter but in the variations once the block has been inserted.</p>
+
+
+
+<pre rel="JavaScript" class="wp-block-csstricks-code-block language-javascript" data-line=""><code markup="tt">wp.blocks.registerBlockVariation(
+  'core/columns', {
+    name: 'four-columns',
+    title: 'Four columns; equal split',
+    icon: &lt;svg ... />,
+    scope: ['block'], // Highlight
+    innerBlocks: [
+      ['core/column'],
+      ['core/column'],
+      ['core/column'],
+      ['core/column'],
+    ],
+  }
+);</code></pre>
+
+
+
+<figure class="wp-block-image size-large"><img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/RY3a2jOO.jpeg?fit=1024%2C390&amp;ssl=1" alt="Four-column layout variation scoped to the block." class="wp-image-307839" srcset="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/RY3a2jOO.jpeg?w=1160&amp;ssl=1 1160w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/RY3a2jOO.jpeg?resize=300%2C114&amp;ssl=1 300w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/RY3a2jOO.jpeg?resize=1024%2C390&amp;ssl=1 1024w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/RY3a2jOO.jpeg?resize=768%2C293&amp;ssl=1 768w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/RY3a2jOO.jpeg?resize=1000%2C381&amp;ssl=1 1000w" sizes="(min-width: 735px) 864px, 96vw" /><figcaption>Hey, now we have a four-column option!</figcaption></figure>
+
+
+
+<p>Isn’t that sweet?!</p>
+
+
+
+<p class="explanation">I’ve omitted the full SVG code for the icon, but <a href="https://gist.github.com/dmtrmrv/4e6209ff761495db697b509ba045f801">it’s available</a> if you need it.</p>
+
+
+
+<p>To sum up <code>scope</code>: If it isn’t declared, the variation will appear in the Block Inserter <em>and </em>inside the block placeholder&nbsp;— specifically for blocks that support block-scoped variations.&nbsp;</p>
+
+
+
+<p>If we were to remove the scope parameter from the example above, here’s how the variation would appear in the inserter:</p>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/um55cKI2.jpeg?resize=431%2C501&#038;ssl=1" alt="Four-column block variation in the block inserter." class="wp-image-307840" width="431" height="501" srcset="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/um55cKI2.jpeg?w=861&amp;ssl=1 861w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/um55cKI2.jpeg?resize=258%2C300&amp;ssl=1 258w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/um55cKI2.jpeg?resize=768%2C893&amp;ssl=1 768w" sizes="(min-width: 735px) 864px, 96vw" data-recalc-dims="1" /><figcaption>Keep in mind that the icon sizes for variations within the block and and the block icons size are different. The custom icon for columns was intended for the block scope, that’s why it looks a bit out-of-place in this example.</figcaption></figure>
+
+
+
+<p><strong>So what did we learn from this example?</strong></p>
+
+
+
+<ul><li>It explains the difference between the block and inserter scope for the variation.</li><li>We learned how to use SVG for variation icon.</li></ul>
+
+
+
+<h3><strong>That’</strong>s it!</h3>
+
+
+
+<p>As you can see, Block Variations are pretty powerful for building a lot of things, from different variations of buttons to complete page layouts.</p>
+
+
+
+<p>I’d like to wrap this up with a quick recap of different APIs for block customizations and when to use them:</p>
+
+
+
+<ul><li>Use <strong>Block Styles</strong> if you need to alter the appearance of the block and adding a CSS class is enough for that.</li><li>Use <strong>Block Variations</strong> if you need to specify the default attributes for the block and/or add inner blocks to it.</li><li>If that’s not enough and you need to change the markup of the block, you are probably looking into filtering the block or creating a new one from scratch.</li></ul>
+
+
+
+<p>If you’ve had a chance to play with Block Variation, let me know what you think of them in the comments!</p>
+
+
+
+<h4>Resources</h4>
+
+
+
+<ul><li><a href="https://make.wordpress.org/core/2020/02/27/introduce-block-variations-api/">Make WordPress Post</a></li><li><a href="https://github.com/WordPress/gutenberg/pull/20068">GitHub Pull Request #20068</a></li></ul>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/how-to-use-block-variations-in-wordpress/">How to Use Block Variations in WordPress</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://css-tricks.com/how-to-use-block-variations-in-wordpress/feed/</wfw:commentRss>
+			<slash:comments>3</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">307800</post-id>	</item>
+		<item>
+		<title>How to Create Custom WordPress Editor Blocks in 2020</title>
+		<link>https://deliciousbrains.com/custom-gutenberg-block/</link>
+		
+		<dc:creator><![CDATA[Chris Coyier]]></dc:creator>
+		<pubDate>Wed, 06 May 2020 14:43:24 +0000</pubDate>
+				<category><![CDATA[Article]]></category>
+		<category><![CDATA[Link]]></category>
+		<category><![CDATA[gutenberg]]></category>
+		<category><![CDATA[WordPress blocks]]></category>
+		<guid isPermaLink="false">https://css-tricks.com/?p=307832</guid>
+
+					<description><![CDATA[<p><a href="https://deliciousbrains.com/custom-gutenberg-block/">Peter Tasker</a> on creating blocks right now:</p>
+<blockquote class="wp-block-quote">
+<p>It’s&#160;<em>fairly</em>&#160;straightforward these days to get set up with the&#160;<a rel="noreferrer noopener" href="https://github.com/wp-cli/scaffold-command#wp-scaffold-block" target="_blank">WP CLI ‘scaffold’ command</a>. This command will set up a WordPress theme or plugin with a ‘blocks’ folder that contains the PHP and base CSS and JavaScript required to create a custom block. The only drawback that I noticed is that the JavaScript uses the old ES5 syntax rather than modern&#160;<a rel="noreferrer noopener" href="https://stackoverflow.com/questions/56521178/what-is-esnext" target="_blank">ESNext</a>. Modern JavaScript allows us to write more concise </p>
+</blockquote>
+<p>&#8230; <a href="https://css-tricks.com/how-to-create-custom-wordpress-editor-blocks-in-2020/" class="read-more">Read article <span class="screen-reader-text"> &#8220;How to Create Custom WordPress Editor Blocks in 2020&#8221;</span></a></p>
+<p>The post <a rel="nofollow" href="https://css-tricks.com/how-to-create-custom-wordpress-editor-blocks-in-2020/">How to Create Custom WordPress Editor Blocks in 2020</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p><a href="https://deliciousbrains.com/custom-gutenberg-block/">Peter Tasker</a> on creating blocks right now:</p>
+
+
+
+<blockquote class="wp-block-quote"><p>It’s&nbsp;<em>fairly</em>&nbsp;straightforward these days to get set up with the&nbsp;<a rel="noreferrer noopener" href="https://github.com/wp-cli/scaffold-command#wp-scaffold-block" target="_blank">WP CLI ‘scaffold’ command</a>. This command will set up a WordPress theme or plugin with a ‘blocks’ folder that contains the PHP and base CSS and JavaScript required to create a custom block. The only drawback that I noticed is that the JavaScript uses the old ES5 syntax rather than modern&nbsp;<a rel="noreferrer noopener" href="https://stackoverflow.com/questions/56521178/what-is-esnext" target="_blank">ESNext</a>. Modern JavaScript allows us to write more concise code and use&nbsp;<a rel="noreferrer noopener" href="https://reactjs.org/docs/introducing-jsx.html" target="_blank">JSX</a>&nbsp;in our custom block code.</p><p>You can also use the&nbsp;<a rel="noreferrer noopener" href="https://github.com/ahmadawais/create-guten-block" target="_blank">‘create-guten-block’</a>&nbsp;tool by&nbsp;<a rel="noreferrer noopener" href="https://twitter.com/mrahmadawais" target="_blank">Ahmad Awais</a>. It gives you a lot of the boilerplate stuff you need out of the box, like Webpack, ESNext support etc. Setting it up is fairly straightforward, and it’s similar to&nbsp;<a rel="noreferrer noopener" href="https://github.com/facebook/create-react-app" target="_blank">Create React App</a>.</p></blockquote>
+
+
+
+<span id="more-307832"></span>
+
+
+
+<p>I&#8217;ve used create-guten-block for the handful of custom blocks I&#8217;ve made so far, and have found it a pretty nice experience. </p>
+
+
+
+<p>But&#8230; I feel like I just sort of lucked into being comfortable with all this. I have one foot in WordPress development <em>and</em> just so happen to have one foot in React development. Building blocks with both technologies together feels decently natural to me. If blocks were Angular or something, I feel like I might not have even given it a shot. </p>
+
+
+
+<p>I&#8217;ll echo this sentiment:</p>
+
+
+
+<blockquote class="wp-block-quote"><p>I also found it really annoying working on a block that’s actively changing in code. Every time you reload Gutenberg, you’ll get the “This block appears to have been modified externally…” message because the markup of the block has changed.</p><p>I get&nbsp;<a rel="noreferrer noopener" href="https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#validation" target="_blank">why it’s throwing the error</a>, but it slows you down.</p></blockquote>
+
+
+
+<p>At the end, Peter mentions the approach of building blocks <a href="https://www.advancedcustomfields.com/resources/blocks/">that Advanced Custom Fields has</a>. It almost feels like a weird bizarro-reverso world. The ACF approach seems more like what WordPress would have done in a normal world (building blocks with just PHP and templating) and third-parties would be the ones adding all the fancy React stuff.  </p>
+<p><a href="https://deliciousbrains.com/custom-gutenberg-block/" title="Direct link to featured article">Direct Link to Article</a> &#8212; <a href="https://css-tricks.com/how-to-create-custom-wordpress-editor-blocks-in-2020/">Permalink</a></p><p>The post <a rel="nofollow" href="https://css-tricks.com/how-to-create-custom-wordpress-editor-blocks-in-2020/">How to Create Custom WordPress Editor Blocks in 2020</a> appeared first on <a rel="nofollow" href="https://css-tricks.com">CSS-Tricks</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">307832</post-id>	</item>
+	</channel>
+</rss>

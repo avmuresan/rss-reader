@@ -8,7 +8,7 @@ module Api
     protected
 
     def set_articles
-      @articles = Feed.find_each.map(&:articles).flatten.sort_by(&:date)
+      @articles = Feed.find_each.map(&:articles).flatten.sort_by(&:date).reverse
     end
   end
 end

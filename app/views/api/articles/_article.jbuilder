@@ -1,1 +1,1 @@
-json.extract! article, :title, :link, :date
+json.extract! article, :title, :link, :date, :channel

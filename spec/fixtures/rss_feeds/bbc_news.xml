@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet title="XSL_formatting" type="text/xsl" href="/shared/bsp/xsl/rss/nolsol.xsl"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+    <channel>
+        <title><![CDATA[BBC News - Home]]></title>
+        <description><![CDATA[BBC News - Home]]></description>
+        <link>https://www.bbc.co.uk/news/</link>
+        <image>
+            <url>https://news.bbcimg.co.uk/nol/shared/img/bbc_news_120x60.gif</url>
+            <title>BBC News - Home</title>
+            <link>https://www.bbc.co.uk/news/</link>
+        </image>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Sun, 10 May 2020 07:22:25 GMT</lastBuildDate>
+        <copyright><![CDATA[Copyright: (C) British Broadcasting Corporation, see http://news.bbc.co.uk/2/hi/help/rss/4498287.stm for terms and conditions of reuse.]]></copyright>
+        <language><![CDATA[en-gb]]></language>
+        <ttl>15</ttl>
+        <item>
+            <title><![CDATA[Coronavirus: Boris Johnson to launch Covid-19 alert system]]></title>
+            <description><![CDATA[Boris Johnson is also expected to unveil a new message to "stay alert, control the virus, save lives".]]></description>
+            <link>https://www.bbc.co.uk/news/uk-52602635</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/uk-52602635</guid>
+            <pubDate>Sun, 10 May 2020 06:24:26 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Boris Johnson's lockdown speech: What to watch out for]]></title>
+            <description><![CDATA[Boris Johnson's address from No 10 is expected to set out a "roadmap" for easing lockdown restrictions.]]></description>
+            <link>https://www.bbc.co.uk/news/uk-52599765</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/uk-52599765</guid>
+            <pubDate>Sun, 10 May 2020 06:55:18 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: UK sent 50,000 Covid-19 samples to US for testing]]></title>
+            <description><![CDATA[The government says "operational issues" in the UK meant 50,000 samples had to be flown to US labs.]]></description>
+            <link>https://www.bbc.co.uk/news/uk-52603566</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/uk-52603566</guid>
+            <pubDate>Sun, 10 May 2020 06:37:07 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: PM to unveil Covid-19 alert system and call for BAME deaths inquiry]]></title>
+            <description><![CDATA[Five things you need to know about the coronavirus outbreak this morning.]]></description>
+            <link>https://www.bbc.co.uk/news/uk-52603694</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/uk-52603694</guid>
+            <pubDate>Sun, 10 May 2020 06:18:48 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: Obama says US response a 'chaotic disaster']]></title>
+            <description><![CDATA[Ex-president strongly criticises successor Donald Trump over his handling of the coronavirus crisis.]]></description>
+            <link>https://www.bbc.co.uk/news/world-us-canada-52602580</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/world-us-canada-52602580</guid>
+            <pubDate>Sun, 10 May 2020 04:06:24 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Newcastle takeover: Moral values should prevail, Khashoggi's fiancee says]]></title>
+            <description><![CDATA[The fiancee of murdered journalist Jamal Khashoggi says Newcastle United and the Premier League must put moral values ahead of financial gains.]]></description>
+            <link>https://www.bbc.co.uk/sport/football/52601464</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/sport/football/52601464</guid>
+            <pubDate>Sat, 09 May 2020 23:01:47 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Prince of Wales hails Britain's postal workers during pandemic]]></title>
+            <description><![CDATA[Prince Charles praises their "dedication, resilience and hard work" in a letter left outside his home.]]></description>
+            <link>https://www.bbc.co.uk/news/uk-52602633</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/uk-52602633</guid>
+            <pubDate>Sat, 09 May 2020 23:01:47 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: Call for public inquiry into BAME death risk]]></title>
+            <description><![CDATA[More than 70 public figures sign an open letter to the prime minister calling for more transparency.]]></description>
+            <link>https://www.bbc.co.uk/news/health-52602467</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/health-52602467</guid>
+            <pubDate>Sun, 10 May 2020 00:08:29 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: Shops should reopen based on safety - retail chief]]></title>
+            <description><![CDATA[The British Retail Consortium says practical safety measures will protect staff and shoppers.]]></description>
+            <link>https://www.bbc.co.uk/news/business-52603183</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/business-52603183</guid>
+            <pubDate>Sun, 10 May 2020 02:27:04 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: Churches may not be back to normal by end of year]]></title>
+            <description><![CDATA[Social distancing could mean prayer books cannot be shared and people cannot sing, religious leaders say.]]></description>
+            <link>https://www.bbc.co.uk/news/uk-52600707</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/uk-52600707</guid>
+            <pubDate>Sun, 10 May 2020 01:09:06 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: Elon Musk vows to move Tesla factory in lockdown row]]></title>
+            <description><![CDATA[Tesla CEO Elon Musk says the firm will leave California after he is ordered to keep a factory shut.]]></description>
+            <link>https://www.bbc.co.uk/news/world-us-canada-52601750</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/world-us-canada-52601750</guid>
+            <pubDate>Sun, 10 May 2020 03:15:21 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[The Papers: Rock 'n' roll hero dies and 'lockdown decision day']]></title>
+            <description><![CDATA[Some papers report the PM will unveil a new coronavirus warning system in his speech this evening.]]></description>
+            <link>https://www.bbc.co.uk/news/blogs-the-papers-52602896</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/blogs-the-papers-52602896</guid>
+            <pubDate>Sun, 10 May 2020 04:44:55 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: Fifty million plastic pieces sifted from beach in lockdown]]></title>
+            <description><![CDATA[Artist Rob Arnold is spending his lockdown sifting 40 sacks of beach litter in Cornwall.]]></description>
+            <link>https://www.bbc.co.uk/news/uk-england-cornwall-52546947</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/uk-england-cornwall-52546947</guid>
+            <pubDate>Sat, 09 May 2020 23:05:04 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: The faces smiling behind the masks]]></title>
+            <description><![CDATA[Laura Fuchs is capturing New Yorkers who are trying to stay positive in the midst of the pandemic.]]></description>
+            <link>https://www.bbc.co.uk/news/world-us-canada-52593522</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/world-us-canada-52593522</guid>
+            <pubDate>Sat, 09 May 2020 23:03:45 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: Rainbow portraits thank the NHS]]></title>
+            <description><![CDATA[Photographer Tom Skipp's pictures of the many rainbows supporting the NHS across the city of Bristol.]]></description>
+            <link>https://www.bbc.co.uk/news/in-pictures-52542923</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/in-pictures-52542923</guid>
+            <pubDate>Sun, 10 May 2020 00:11:26 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: Volunteering at Calais' migrant camps]]></title>
+            <description><![CDATA[Tia has decided to work at a migrant camp in Calais instead of returning home to her family during lockdown.]]></description>
+            <link>https://www.bbc.co.uk/news/stories-52574565</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/stories-52574565</guid>
+            <pubDate>Sat, 09 May 2020 23:23:51 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[The 1957 flu that killed one million people]]></title>
+            <description><![CDATA[In 1957 a new strain of flu emerged in East Asia and quickly spread around the world, killing a million people.]]></description>
+            <link>https://www.bbc.co.uk/news/stories-52582124</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/stories-52582124</guid>
+            <pubDate>Sat, 09 May 2020 23:25:14 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus doctor's diary: The strange case of the choir that coughed in January]]></title>
+            <description><![CDATA[Dr John Wright is intrigued by some singers who became ill long before the UK's first known Covid-19 case.]]></description>
+            <link>https://www.bbc.co.uk/news/health-52589449</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/health-52589449</guid>
+            <pubDate>Sun, 10 May 2020 00:12:16 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Bundesliga: Derek Rae's guide to the German league]]></title>
+            <description><![CDATA[German football will be the first to restart in Europe - here's your guide to following it.]]></description>
+            <link>https://www.bbc.co.uk/news/newsbeat-52574525</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/newsbeat-52574525</guid>
+            <pubDate>Sat, 09 May 2020 23:57:15 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: The sex toy manufacturer making NHS gear]]></title>
+            <description><![CDATA[The BBC speaks to unexpected sources who are supplying PPE amid coronavirus shortages.]]></description>
+            <link>https://www.bbc.co.uk/news/business-52469841</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/business-52469841</guid>
+            <pubDate>Sun, 10 May 2020 00:12:44 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[OCD: 'I spent 20 years preparing for the coronavirus pandemic']]></title>
+            <description><![CDATA[How coping with OCD prepared one man for the challenges of the coronavirus pandemic.]]></description>
+            <link>https://www.bbc.co.uk/news/stories-52564434</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/stories-52564434</guid>
+            <pubDate>Sat, 09 May 2020 23:59:47 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA["Can I get a mortgage if I'm only on 80% pay?"]]></title>
+            <description><![CDATA[As millions of people have their salaries cut, will mortgage providers lend based on reduced salary?]]></description>
+            <link>https://www.bbc.co.uk/news/business-52588952</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/business-52588952</guid>
+            <pubDate>Sun, 10 May 2020 00:13:08 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[A Hero's Death? Fontaines DC confront the curse of the second album]]></title>
+            <description><![CDATA[The Dublin rock band had one of 2019's best albums - so what does the follow-up have in store?]]></description>
+            <link>https://www.bbc.co.uk/news/entertainment-arts-52571094</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/entertainment-arts-52571094</guid>
+            <pubDate>Sun, 10 May 2020 00:13:31 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Obituary: Little Richard, a flamboyant pioneer]]></title>
+            <description><![CDATA[The self-styled "king and queen of rock 'n' roll" - who inspired Elvis and The Beatles - dies at 87.]]></description>
+            <link>https://www.bbc.co.uk/news/entertainment-arts-17372753</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/entertainment-arts-17372753</guid>
+            <pubDate>Sat, 09 May 2020 14:40:57 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Dresden put entire squad in isolation - a week before German football restarts]]></title>
+            <description><![CDATA[Dynamo Dresden, who play in the second tier of German Football, have put their entire squad and coaching staff into two-week isolation after recording two new coronavirus cases.]]></description>
+            <link>https://www.bbc.co.uk/sport/football/52601471</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/sport/football/52601471</guid>
+            <pubDate>Sat, 09 May 2020 19:37:51 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Match of Their Day: Phil Neville picks his classic games]]></title>
+            <description><![CDATA[In this week's Match of Their Day, former Manchester United and Everton player Phil Neville selects his three favourite Premier League games.]]></description>
+            <link>https://www.bbc.co.uk/sport/football/52561522</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/sport/football/52561522</guid>
+            <pubDate>Sun, 10 May 2020 06:58:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Pro14 season resumption planned for late August]]></title>
+            <description><![CDATA[Plans are being considered to resume a curtailed Pro14 season on 22 August following the coronavirus crisis.]]></description>
+            <link>https://www.bbc.co.uk/sport/rugby-union/52591345</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/sport/rugby-union/52591345</guid>
+            <pubDate>Sat, 09 May 2020 18:13:41 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Watford third team to oppose Premier League neutral venue proposals]]></title>
+            <description><![CDATA[Watford become the third team to publicly oppose the use of neutral venues when Premier League football returns.]]></description>
+            <link>https://www.bbc.co.uk/sport/football/52598311</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/sport/football/52598311</guid>
+            <pubDate>Sat, 09 May 2020 10:28:18 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA['I feel fresher and healthier' - Hamilton enjoying parts of F1 break]]></title>
+            <description><![CDATA[Mercedes driver Lewis Hamilton says he feels certain benefits from his enforced time away from Formula 1.]]></description>
+            <link>https://www.bbc.co.uk/sport/formula1/52600050</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/sport/formula1/52600050</guid>
+            <pubDate>Sat, 09 May 2020 13:17:54 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Gossip - Tottenham leading Man Utd in race for Meunier]]></title>
+            <description><![CDATA[Tottenham are ahead of Manchester United in the race for Thomas Meunier as the Red Devils consider replacements for David de Gea.]]></description>
+            <link>https://www.bbc.co.uk/sport/52601241</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/sport/52601241</guid>
+            <pubDate>Sat, 09 May 2020 19:28:22 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Dennis Bergkamp scores wonder goal for Netherlands against Argentina]]></title>
+            <description><![CDATA[BBC Sport marks Dennis Bergkamp's birthday by looking back at his brilliant winning goal for the Netherlands against Argentina.]]></description>
+            <link>https://www.bbc.co.uk/sport/av/football/52559830</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/sport/av/football/52559830</guid>
+            <pubDate>Sun, 10 May 2020 07:13:24 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: How might lockdown end and what will be the 'new normal'?]]></title>
+            <description><![CDATA[When the government eases restrictions, how will social and work life be different?]]></description>
+            <link>https://www.bbc.co.uk/news/explainers-52530518</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/explainers-52530518</guid>
+            <pubDate>Wed, 06 May 2020 00:10:37 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: Should the public wear face masks?]]></title>
+            <description><![CDATA[There is growing discussion about the potential benefits of the general public wearing masks.]]></description>
+            <link>https://www.bbc.co.uk/news/health-51205344</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/health-51205344</guid>
+            <pubDate>Thu, 30 Apr 2020 17:14:36 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: Intensive care and other key terms explained]]></title>
+            <description><![CDATA[Use our tool to check the meaning of key words and phrases associated with the Covid-19 outbreak.]]></description>
+            <link>https://www.bbc.co.uk/news/health-52182658</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/health-52182658</guid>
+            <pubDate>Sun, 03 May 2020 00:06:18 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coronavirus: How lockdown is being lifted across Europe]]></title>
+            <description><![CDATA[As the UK looks to lift restrictions, how do other European countries plan to re-open after lockdown?]]></description>
+            <link>https://www.bbc.co.uk/news/explainers-52575313</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/explainers-52575313</guid>
+            <pubDate>Sun, 10 May 2020 00:20:14 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[The FBI said I was my parents' stolen baby - but I found the truth]]></title>
+            <description><![CDATA[Foundling Paul Fronczak was given to a family whose baby had been stolen - but was he really their son?]]></description>
+            <link>https://www.bbc.co.uk/news/stories-44242626</link>
+            <guid isPermaLink="true">https://www.bbc.co.uk/news/stories-44242626</guid>
+            <pubDate>Wed, 20 Jun 2018 02:12:48 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

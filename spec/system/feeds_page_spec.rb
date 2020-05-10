@@ -15,7 +15,9 @@ RSpec.describe 'Feeds page', type: :system do
 
     it 'shows the existing feeds' do
       FactoryBot.create_list(:feed, 3)
-
+      Feed.find_each do |feed|
+        stub_request(:get, /#{feed.url}/).to_return(status: 200)
+      end
       visit '/feeds'
       expect(page).not_to have_content(empty_label)
 
@@ -33,6 +35,7 @@ RSpec.describe 'Feeds page', type: :system do
 
       feed_title = Faker::Book.title
       feed_url = Faker::Internet.url
+      stub_request(:get, /#{feed_url}/).to_return(status: 200)
 
       fill_in 'feed_title', with: feed_title
       fill_in 'feed_url', with: feed_url
@@ -60,6 +63,9 @@ RSpec.describe 'Feeds page', type: :system do
   describe 'update' do
     it 'edits an existing feed' do
       FactoryBot.create_list(:feed, 3)
+      Feed.find_each do |feed|
+        stub_request(:get, /#{feed.url}/).to_return(status: 200)
+      end
       feed = Feed.first
 
       visit '/feeds'
@@ -72,7 +78,7 @@ RSpec.describe 'Feeds page', type: :system do
       fill_in "feed_url_#{feed.id}", with: feed_url
       find("#save_button_#{feed.id}").click
 
-      sleep(1.second)
+      wait_for_ajax
       feed.reload
       expect(feed.title).to eq(feed_title)
       expect(feed.url).to eq(feed_url)
@@ -80,6 +86,9 @@ RSpec.describe 'Feeds page', type: :system do
 
     it 'validates the feed attributes' do
       FactoryBot.create_list(:feed, 3)
+      Feed.find_each do |feed|
+        stub_request(:get, /#{feed.url}/).to_return(status: 200)
+      end
       feed = Feed.first
 
       visit '/feeds'
@@ -91,7 +100,7 @@ RSpec.describe 'Feeds page', type: :system do
       fill_in "feed_url_#{feed.id}", with: ''
       accept_alert do
         find("#save_button_#{feed.id}").click
-        sleep(1.second)
+        wait_for_ajax
         feed.reload
         expect(feed.title).not_to eq(feed_title)
       end
@@ -101,6 +110,9 @@ RSpec.describe 'Feeds page', type: :system do
   describe 'remove' do
     it 'deletes the first feed' do
       FactoryBot.create_list(:feed, 3)
+      Feed.find_each do |feed|
+        stub_request(:get, /#{feed.url}/).to_return(status: 200)
+      end
       feed = Feed.first
 
       visit '/feeds'

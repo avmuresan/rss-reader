@@ -60,12 +60,13 @@
         this.loading = true;
         this.$store.dispatch('feeds/save', { feed: this.form.data })
           .then(() => {
+            this.$store.dispatch('articles/load');
             this.loading = false;
             this.editing = false;
           }).catch((error) => {
             alert(Object.values(error.response.data)[0]);
             this.loading = false;
-            this.loading = false;
+            this.editing = false;
           });
       }
     },

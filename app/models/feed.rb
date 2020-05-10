@@ -8,7 +8,7 @@ class Feed < ApplicationRecord
   def articles
     @articles ||= begin
       feed = RSS::Parser.parse(rss_articles)
-      feed.items.map { |rss_article| Article.new(rss_article) }
+      feed.items.map { |rss_article| Article.new(rss_article, self) }
     end
   rescue StandardError => e
     Rails.logger.debug(e.message)

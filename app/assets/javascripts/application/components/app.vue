@@ -22,6 +22,7 @@
     },
     created() {
       Promise.all([
+        this.$store.dispatch('articles/load'),
         this.$store.dispatch('feeds/load')
       ]).then(() => {
         this.isLoading = false;

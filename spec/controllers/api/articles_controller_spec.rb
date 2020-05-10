@@ -7,7 +7,9 @@ describe Api::ArticlesController, type: :request do
       @all_articles = []
       feeds.each do |feed|
         rss_articles = FactoryBot.build_list(:rss_article, 3)
-        articles = rss_articles.map { |rss_article| Article.new(rss_article) }
+        articles = rss_articles.map do |rss_article|
+          Article.new(rss_article, feed)
+        end
         @all_articles.push(*articles)
         feed.expects(:articles).returns(articles)
       end
@@ -23,7 +25,7 @@ describe Api::ArticlesController, type: :request do
     it 'responds with all articles sorted by date json' do
       get api_articles_url
       titles = json['articles'].map { |article| article['title'] }
-      expected_titles = @all_articles.sort_by(&:date).map(&:title)
+      expected_titles = @all_articles.sort_by(&:date).map(&:title).reverse
       expect(titles).to eq(expected_titles)
     end
   end
